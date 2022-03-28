@@ -15,17 +15,13 @@ return new class extends Migration
     {
         Schema::create('programas', function (Blueprint $table) {
             $table->id();
-            $table->enum('tipo_programa',['Educación para adultos','Desarrollo de comunidad',
-            'Actividades deportivas','Actividades culturales','PRONASOL','Otros']);
             $table->text('actividades');
-            /*
-            $table->unsignedBigInteger('proyectograma_id')->unique();
-            $table->foreign('proyectograma_id')
+            $table->unsignedBigInteger('tipo_id')->nullable();
+            $table->foreign('tipo_id')
                 ->references('id')
-                ->on('proyectogramas')
-                ->onDelete('cascade')
+                ->on('tipos')
+                ->onDelete('set null')
                 ->onUpdate('cascade');
-            */
             $table->timestamps();
         });
     }

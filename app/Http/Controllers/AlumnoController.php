@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Carrera;
+use App\Models\User;
 use App\Models\Alumno;
 use App\Http\Requests\StoreAlumnoRequest;
 use App\Http\Requests\UpdateAlumnoRequest;
@@ -15,7 +17,8 @@ class AlumnoController extends Controller
      */
     public function index()
     {
-        //
+        $alumnos = Alumno::paginate(5);
+        return view('alumno/index',compact('alumnos'));
     }
 
     /**
@@ -25,7 +28,9 @@ class AlumnoController extends Controller
      */
     public function create()
     {
-        //
+        $carreras = Carrera::all();
+        $users = User::where('tipo_user','Alumno')->orderby('name','asc')->get();
+        return view('alumno.create',compact('carreras','users'));
     }
 
     /**
@@ -36,7 +41,18 @@ class AlumnoController extends Controller
      */
     public function store(StoreAlumnoRequest $request)
     {
-        //
+        $alumno = new Alumno();
+        $alumno->apaterno = $request->apaterno;
+        $alumno->amaterno = $request->amaterno;
+        $alumno->nombre = $request->nombre;
+        $alumno->ncontrol = $request->ncontrol;
+        $alumno->nip = $request->nip;
+        $alumno->correo = $request->correo;
+        $alumno->telefono = $request->telefono;
+        $alumno->carrera_id = $request->carrera_id;
+        $alumno->user_id = $request->user_id;
+        $alumno->save();
+        return redirect('alumnos')->with('mensaje','Alumno agregado corectamente!');
     }
 
     /**
@@ -58,7 +74,9 @@ class AlumnoController extends Controller
      */
     public function edit(Alumno $alumno)
     {
-        //
+        $carreras = Carrera::all();
+        $users = User::where('tipo_user','Alumno')->orderby('name','asc')->get();
+        return view('alumno.edit',compact('alumno','carreras','users'));
     }
 
     /**
@@ -70,7 +88,17 @@ class AlumnoController extends Controller
      */
     public function update(UpdateAlumnoRequest $request, Alumno $alumno)
     {
-        //
+        $alumno->apaterno = $request->apaterno;
+        $alumno->amaterno = $request->amaterno;
+        $alumno->nombre = $request->nombre;
+        $alumno->ncontrol = $request->ncontrol;
+        $alumno->nip = $request->nip;
+        $alumno->correo = $request->correo;
+        $alumno->telefono = $request->telefono;
+        $alumno->carrera_id = $request->carrera_id;
+        $alumno->user_id = $request->user_id;
+        $alumno->save();
+        return redirect('alumnos')->with('mensaje','Alumno actualizado corectamente!');
     }
 
     /**
@@ -81,6 +109,7 @@ class AlumnoController extends Controller
      */
     public function destroy(Alumno $alumno)
     {
-        //
+        $alumno->delete();
+        return redirect('alumnos')->with('mensaje','Alumno eliminado corectamente!');
     }
 }

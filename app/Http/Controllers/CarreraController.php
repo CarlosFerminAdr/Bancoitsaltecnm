@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Jdepto;
 use App\Models\Carrera;
 use App\Http\Requests\StoreCarreraRequest;
 use App\Http\Requests\UpdateCarreraRequest;
@@ -15,7 +16,8 @@ class CarreraController extends Controller
      */
     public function index()
     {
-        //
+        $carreras = Carrera::paginate(10);
+        return view('carrera/index',compact('carreras'));
     }
 
     /**
@@ -25,7 +27,8 @@ class CarreraController extends Controller
      */
     public function create()
     {
-        //
+        $jdeptos = Jdepto::all();
+        return view('carrera.create',compact('jdeptos'));
     }
 
     /**
@@ -36,7 +39,11 @@ class CarreraController extends Controller
      */
     public function store(StoreCarreraRequest $request)
     {
-        //
+        $carrera = new Carrera();
+        $carrera->nombre = $request->nombre;
+        $carrera->jdepto_id = $request->jdepto_id;
+        $carrera->save();
+        return redirect('carreras')->with('mensaje','Carrera agregado corectamente!');
     }
 
     /**
@@ -58,7 +65,8 @@ class CarreraController extends Controller
      */
     public function edit(Carrera $carrera)
     {
-        //
+        $jdeptos = Jdepto::all();
+        return view('carrera.edit',compact('carrera','jdeptos'));
     }
 
     /**
@@ -70,7 +78,10 @@ class CarreraController extends Controller
      */
     public function update(UpdateCarreraRequest $request, Carrera $carrera)
     {
-        //
+        $carrera->nombre = $request->nombre;
+        $carrera->jdepto_id = $request->jdepto_id;
+        $carrera->save();
+        return redirect('carreras')->with('mensaje','Carrera actualizado corectamente!');
     }
 
     /**
@@ -81,6 +92,7 @@ class CarreraController extends Controller
      */
     public function destroy(Carrera $carrera)
     {
-        //
+        $carrera->delete();
+        return redirect('carreras')->with('mensaje','Carrera eliminado corectamente!');
     }
 }

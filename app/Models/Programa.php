@@ -9,6 +9,10 @@ class Programa extends Model
 {
     use HasFactory;
 
+    public function tipo(){
+        return $this->belongsTo('App\Models\Tipo');
+    }
+
     // RELACION UNO A UNO POLIMORFICA
     public function convocatoria(){
         return $this->MorphOne('App\Models\Convocatoria', 'convocatoriaable');

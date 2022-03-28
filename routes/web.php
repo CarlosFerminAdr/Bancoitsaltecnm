@@ -3,6 +3,12 @@
 use App\Http\Controllers\PeriodoController;
 use App\Http\Controllers\DomicilioController;
 use App\Http\Controllers\JdeptoController;
+use App\Http\Controllers\CarreraController;
+use App\Http\Controllers\EmpresaController;
+use App\Http\Controllers\ProyectogramaController;
+use App\Http\Controllers\ProyectoController;
+use App\Http\Controllers\ProgramaController;
+use App\Http\Controllers\AlumnoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,3 +29,9 @@ Route::get('/', function () {
 Route::resource('periodos', PeriodoController::class);
 Route::resource('domicilios', DomicilioController::class);
 Route::resource('jdeptos', JdeptoController::class);
+Route::resource('carreras', CarreraController::class);
+Route::resource('empresas', EmpresaController::class);
+Route::resource('proyectogramas', ProyectogramaController::class);
+Route::resource('proyectos', ProyectoController::class);
+Route::resource('programas', ProgramaController::class);
+Route::resource('alumnos', AlumnoController::class);

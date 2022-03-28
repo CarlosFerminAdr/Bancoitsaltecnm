@@ -13,7 +13,7 @@ class StoreProyectogramaRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**

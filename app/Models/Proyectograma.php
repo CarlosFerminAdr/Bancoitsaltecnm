@@ -24,4 +24,8 @@ class Proyectograma extends Model
         return $this->belongsToMany('App\Models\Periodo');
     }
 
+    // RELACION UNO A MUCHOS
+    public function statu(){
+        return $this->belongsTo('App\Models\Statu');
+    }
 }

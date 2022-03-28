@@ -18,7 +18,12 @@ return new class extends Migration
             $table->string('nombre');
             $table->integer('nalumnos');
             $table->string('flimite');
-            $table->enum('status',['Disponible','Asignado','En proceso']);
+            $table->unsignedBigInteger('statu_id')->nullable();
+            $table->foreign('statu_id')
+                ->references('id')
+                ->on('status')
+                ->onDelete('set null')
+                ->onUpdate('cascade');
             $table->unsignedBigInteger('empresa_id')->nullable();
             $table->foreign('empresa_id')
                 ->references('id')

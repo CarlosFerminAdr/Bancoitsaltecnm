@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Statu;
+use App\Models\Empresa;
 use App\Models\Proyectograma;
 use App\Http\Requests\StoreProyectogramaRequest;
 use App\Http\Requests\UpdateProyectogramaRequest;
@@ -15,7 +17,8 @@ class ProyectogramaController extends Controller
      */
     public function index()
     {
-        //
+        $proyectogramas = Proyectograma::paginate(10);
+        return view('proyectograma/index',compact('proyectogramas'));
     }
 
     /**
@@ -25,7 +28,9 @@ class ProyectogramaController extends Controller
      */
     public function create()
     {
-        //
+        $status = Statu::all();
+        $empresas = Empresa::all();
+        return view('proyectograma.create',compact('status','empresas'));
     }
 
     /**
@@ -36,7 +41,14 @@ class ProyectogramaController extends Controller
      */
     public function store(StoreProyectogramaRequest $request)
     {
-        //
+        $proyectograma = new Proyectograma();
+        $proyectograma->nombre = $request->nombre;
+        $proyectograma->nalumnos = $request->nalumnos;
+        $proyectograma->flimite = $request->flimite;
+        $proyectograma->statu_id = $request->statu_id;
+        $proyectograma->empresa_id = $request->empresa_id;
+        $proyectograma->save();
+        return redirect('proyectogramas')->with('mensaje','Registro agregado corectamente!');
     }
 
     /**
@@ -58,7 +70,9 @@ class ProyectogramaController extends Controller
      */
     public function edit(Proyectograma $proyectograma)
     {
-        //
+        $status = Statu::all();
+        $empresas = Empresa::all();
+        return view('proyectograma.edit',compact('proyectograma','status','empresas'));
     }
 
     /**
@@ -70,7 +84,13 @@ class ProyectogramaController extends Controller
      */
     public function update(UpdateProyectogramaRequest $request, Proyectograma $proyectograma)
     {
-        //
+        $proyectograma->nombre = $request->nombre;
+        $proyectograma->nalumnos = $request->nalumnos;
+        $proyectograma->flimite = $request->flimite;
+        $proyectograma->statu_id = $request->statu_id;
+        $proyectograma->empresa_id = $request->empresa_id;
+        $proyectograma->save();
+        return redirect('proyectogramas')->with('mensaje','Registro actualizado corectamente!');
     }
 
     /**
@@ -81,6 +101,7 @@ class ProyectogramaController extends Controller
      */
     public function destroy(Proyectograma $proyectograma)
     {
-        //
+        $proyectograma->delete();
+        return redirect('proyectogramas')->with('mensaje','Registro eliminado corectamente!');
     }
 }

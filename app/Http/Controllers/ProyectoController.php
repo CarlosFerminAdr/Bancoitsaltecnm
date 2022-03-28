@@ -15,7 +15,8 @@ class ProyectoController extends Controller
      */
     public function index()
     {
-        //
+        $proyectos = Proyecto::paginate(5);
+        return view('proyecto/index',compact('proyectos'));
     }
 
     /**
@@ -25,7 +26,7 @@ class ProyectoController extends Controller
      */
     public function create()
     {
-        //
+        return view('proyecto.create');
     }
 
     /**
@@ -36,7 +37,11 @@ class ProyectoController extends Controller
      */
     public function store(StoreProyectoRequest $request)
     {
-        //
+        $proyecto = new Proyecto();
+        $proyecto->objetivo = $request->objetivo;
+        $proyecto->problematica = $request->problematica;
+        $proyecto->save();
+        return redirect('proyectos')->with('mensaje','Proyecto agregado corectamente!');
     }
 
     /**
@@ -58,7 +63,7 @@ class ProyectoController extends Controller
      */
     public function edit(Proyecto $proyecto)
     {
-        //
+        return view('proyecto.edit',compact('proyecto'));
     }
 
     /**
@@ -70,7 +75,10 @@ class ProyectoController extends Controller
      */
     public function update(UpdateProyectoRequest $request, Proyecto $proyecto)
     {
-        //
+        $proyecto->objetivo = $request->objetivo;
+        $proyecto->problematica = $request->problematica;
+        $proyecto->save();
+        return redirect('proyectos')->with('mensaje','Proyecto actualizado corectamente!');
     }
 
     /**
@@ -81,6 +89,7 @@ class ProyectoController extends Controller
      */
     public function destroy(Proyecto $proyecto)
     {
-        //
+        $proyecto->delete();
+        return redirect('proyectos')->with('mensaje','Proyecto eliminado corectamente!');
     }
 }
