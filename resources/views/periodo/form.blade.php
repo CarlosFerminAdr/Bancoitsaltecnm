@@ -1,19 +1,36 @@
-<div class="form-row">
-    <h1 class="text-center"><strong>{{$modo}} PERIODO</strong></h1>
+@extends('adminlte::page')
 
-    <div class="col-md-4 mb-3">
-        <label for="validationServer02">Periodo</label>
-        <input type="text" class="form-control is-valid" id="nombre" name="nombre"
-            placeholder="periodo.." value="{{isset($periodo->nombre)?$periodo->nombre:old('nombre')}}">
-        @error('nombre')
-            <small style="color:red;">* {{$message}}</small>
-        @enderror
-        <div class="invalid-feedback">
-            el campo es obligatorio!
+@section('title', 'Periodo')
+
+@section('content_header')
+    <h1>{{$modo}} PERIODO</h1>
+@stop
+
+@section('content')
+
+    <div class="row">
+        <div class="col-sm-12 mb-3">
+            <div class="card was-validated shadow border border-primary">
+                <div class="card-header text-left" style="background-color: #1F5F96;">
+                    <label for="nombre">
+                        <strong style="color:white">Periodo:</strong>
+                    </label>
+                </div>
+
+                <div class="card-body">
+                    <input type="text" class="form-control is-valid" id="nombre" name="nombre"
+                        placeholder="escriba el nombre del Periodo.." value="{{isset($periodo->nombre)?$periodo->nombre:old('nombre')}}" required>
+                    <div class="invalid-feedback">
+                        <strong>*El campo Periodo es obligatorio.</strong>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <br>
 
-</div>
+    <input class="btn btn-success float-right mt-2" type="submit" value="{{$modo2}}">
 
-<input type="submit" value="{{$modo}}">
+    <a class="btn float-end mt-2" style="background-color: #1F5F96; color:white" href="{{route('periodos.index')}}">
+        <i class="fas fa-reply"></i> Atras</a>
+
+@stop

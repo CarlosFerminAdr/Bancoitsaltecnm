@@ -24,7 +24,8 @@ class UpdateProyectoRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'objetivo' => 'required',
+            'problematica' => 'required'
         ];
     }
 }

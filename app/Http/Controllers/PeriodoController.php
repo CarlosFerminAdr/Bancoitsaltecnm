@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Periodo;
-use App\Http\Requests\StorePeriodoRequest;
-use App\Http\Requests\UpdatePeriodoRequest;
+use App\Http\Requests\PeriodoRequest;
 
 class PeriodoController extends Controller
 {
@@ -15,8 +14,9 @@ class PeriodoController extends Controller
      */
     public function index()
     {
-        $periodos = Periodo::paginate(10);
-        return view('periodo/index',compact('periodos'));
+        $periodos = Periodo::paginate();
+        return view('periodo/index',compact('periodos'))
+            ->with('i', (request()->input('page', 1) - 1) * $periodos->perPage());
     }
 
     /**
@@ -35,15 +35,9 @@ class PeriodoController extends Controller
      * @param  \App\Http\Requests\StorePeriodoRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorePeriodoRequest $request)
+    public function store(PeriodoRequest $request)
     {
-        $request->validate([
-            'nombre' => 'required|min:3|max:20'
-        ]);
-
-        $periodo = new Periodo();
-        $periodo->nombre = $request->nombre;
-        $periodo->save();
+        Periodo::create($request->all());
         return redirect('periodos')->with('mensaje','Periodo agregado corectamente!');
     }
 
@@ -76,14 +70,10 @@ class PeriodoController extends Controller
      * @param  \App\Models\Periodo  $periodo
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePeriodoRequest $request, Periodo $periodo)
+    public function update(PeriodoRequest $request, Periodo $periodo)
     {
-        $request->validate([
-            'nombre' => 'required|min:3|max:20'
-        ]);
-
-        $periodo->nombre = $request->nombre;
-        $periodo->save();
+        $datos = request()->except(['_token','_method']);
+        Periodo::find($periodo->id)->update($datos);
         return redirect('periodos')->with('mensaje','Periodo actualizado corectamente!');
     }
 

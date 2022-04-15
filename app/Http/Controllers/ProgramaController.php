@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Estado;
+use App\Models\Empresa;
+use App\Models\Periodo;
+use App\Models\Carrera;
 use App\Models\Tipo;
 use App\Models\Programa;
+use App\Models\Proyectograma;
 use App\Http\Requests\StoreProgramaRequest;
 use App\Http\Requests\UpdateProgramaRequest;
 
@@ -16,8 +21,10 @@ class ProgramaController extends Controller
      */
     public function index()
     {
-        $programas = Programa::paginate(5);
-        return view('programa/index',compact('programas'));
+        $empresa = Empresa::all();
+        $programas = Programa::where('user_id', auth()->user()->id)->paginate();
+        return view('programa/index',compact('programas', 'empresa'))
+            ->with('i', (request()->input('page', 1) - 1) * $programas->perPage());
     }
 
     /**
@@ -27,8 +34,12 @@ class ProgramaController extends Controller
      */
     public function create()
     {
+        $estados = Estado::all();
+        $empresas = Empresa::all();
+        $periodos = Periodo::all();
+        $carreras = Carrera::all();
         $tipos = Tipo::all();
-        return view('programa.create',compact('tipos'));
+        return view('programa.create',compact('tipos', 'estados', 'empresas', 'periodos', 'carreras'));
     }
 
     /**
@@ -39,10 +50,33 @@ class ProgramaController extends Controller
      */
     public function store(StoreProgramaRequest $request)
     {
-        $programa = new Programa();
-        $programa->actividades = $request->actividades;
-        $programa->tipo_id = $request->tipo_id;
-        $programa->save();
+        //return $request;
+        $programa = Programa::create($request->all());
+
+        if($request->nombre){
+            $programa->proyectograma()->create([
+                'nombre'=> $request->nombre,
+                'nalumnos'=> $request->nalumnos,
+                'flimite'=> $request->flimite,
+                'status'=> $request->status,
+                'empresa_id'=> $request->empresa_id
+            ]);
+        }else{
+            return redirect('programas.create');
+        }
+
+        if($request->periodos){
+            $programa->periodos()->attach($request->periodos);
+        }else{
+            return redirect('programas.create');
+        }
+
+        if($request->carreras){
+            $programa->carreras()->attach($request->carreras);
+        }else{
+            return redirect('programas.create');
+        }
+
         return redirect('programas')->with('mensaje','Programa agregado corectamente!');
     }
 
@@ -65,8 +99,12 @@ class ProgramaController extends Controller
      */
     public function edit(Programa $programa)
     {
+        $estados = Estado::all();
+        $empresas = Empresa::all();
+        $periodos = Periodo::all();
+        $carreras = Carrera::all();
         $tipos = Tipo::all();
-        return view('programa.edit',compact('programa','tipos'));
+        return view('programa.edit',compact('programa', 'estados', 'empresas', 'periodos', 'carreras', 'tipos'));
     }
 
     /**
@@ -78,9 +116,31 @@ class ProgramaController extends Controller
      */
     public function update(UpdateProgramaRequest $request, Programa $programa)
     {
-        $programa->actividades = $request->actividades;
-        $programa->tipo_id = $request->tipo_id;
-        $programa->save();
+        $programa->update($request->all());
+        if($request->nombre){
+            $programa->proyectograma()->update([
+                'nombre'=> $request->nombre,
+                'nalumnos'=> $request->nalumnos,
+                'flimite'=> $request->flimite,
+                'status'=> $request->status,
+                'empresa_id'=> $request->empresa_id
+            ]);
+        }else{
+            return redirect('programas.edit');
+        }
+
+        if($request->periodos){
+            $programa->periodos()->sync($request->periodos);
+        }else{
+            return redirect('programas.edit');
+        }
+
+        if($request->carreras){
+            $programa->carreras()->sync($request->carreras);
+        }else{
+            return redirect('programas.edit');
+        }
+
         return redirect('programas')->with('mensaje','Programa actualizado corectamente!');
     }
 

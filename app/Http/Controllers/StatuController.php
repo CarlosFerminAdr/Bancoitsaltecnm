@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Statu;
-use App\Http\Requests\StoreStatuRequest;
-use App\Http\Requests\UpdateStatuRequest;
+use App\Http\Requests\StatuRequest;
 
 class StatuController extends Controller
 {
@@ -15,7 +14,8 @@ class StatuController extends Controller
      */
     public function index()
     {
-        //
+        $status = Statu::paginate(5);
+        return view('statu/index',compact('status'));
     }
 
     /**
@@ -25,7 +25,7 @@ class StatuController extends Controller
      */
     public function create()
     {
-        //
+        return view('statu.create');
     }
 
     /**
@@ -34,9 +34,10 @@ class StatuController extends Controller
      * @param  \App\Http\Requests\StoreStatuRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreStatuRequest $request)
+    public function store(StatuRequest $request)
     {
-        //
+        Statu::create($request->all());
+        return redirect('status')->with('mensaje','Estatus agregado corectamente!');
     }
 
     /**
@@ -58,7 +59,7 @@ class StatuController extends Controller
      */
     public function edit(Statu $statu)
     {
-        //
+        return view('statu.edit',compact('statu'));
     }
 
     /**
@@ -68,7 +69,7 @@ class StatuController extends Controller
      * @param  \App\Models\Statu  $statu
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateStatuRequest $request, Statu $statu)
+    public function update(StatuRequest $request, Statu $statu)
     {
         //
     }
@@ -81,6 +82,7 @@ class StatuController extends Controller
      */
     public function destroy(Statu $statu)
     {
-        //
+        $statu->delete();
+        return redirect('status')->with('mensaje','Estado eliminado corectamente!');
     }
 }

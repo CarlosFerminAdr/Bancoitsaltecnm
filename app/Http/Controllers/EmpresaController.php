@@ -17,8 +17,9 @@ class EmpresaController extends Controller
      */
     public function index()
     {
-        $empresas = Empresa::paginate(5);
-        return view('empresa/index',compact('empresas'));
+        $empresas = Empresa::paginate();
+        return view('empresa/index',compact('empresas'))
+            ->with('i', (request()->input('page', 1) - 1) * $empresas->perPage());
     }
 
     /**

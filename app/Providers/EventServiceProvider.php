@@ -7,6 +7,13 @@ use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
 
+use App\Models\Proyecto;
+use App\Observers\ProyectoObserver;
+
+use App\Models\Programa;
+use App\Observers\ProgramaObserver;
+
+
 class EventServiceProvider extends ServiceProvider
 {
     /**
@@ -27,7 +34,8 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Proyecto::observe(ProyectoObserver::class);
+        Programa::observe(ProgramaObserver::class);
     }
 
     /**

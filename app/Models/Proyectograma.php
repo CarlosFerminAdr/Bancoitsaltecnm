@@ -7,7 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Proyectograma extends Model
 {
+    protected $fillable = ['nombre', 'nalumnos', 'flimite', 'status', 'empresa_id'];
+
     use HasFactory;
+
+    //TABLA CONVOCATORIAS RALACION POLIMORFICA UNO A UNO
+    public function proyectograable(){
+        return $this->morphTo();
+    }
 
     //RELACION UNO A MUCHOS INVERSA
     public function empresa(){
@@ -25,7 +32,7 @@ class Proyectograma extends Model
     }
 
     // RELACION UNO A MUCHOS
-    public function statu(){
-        return $this->belongsTo('App\Models\Statu');
+    public function estado(){
+        return $this->belongsTo('App\Models\Estado');
     }
 }

@@ -24,7 +24,7 @@ class UpdateProgramaRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'actividades' => 'required'
         ];
     }
 }

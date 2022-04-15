@@ -1,85 +1,125 @@
-<div class="form-row">
-    <h1 class="text-center"><strong>{{$modo}} DOMICILIO</strong></h1>
+@extends('adminlte::page')
 
-    <div class="col-md-4 mb-3">
-        <label for="validationServer02">Calle</label>
-        <input type="text" class="form-control is-valid" id="calle" name="calle"
-            placeholder="calle.." value="{{isset($domicilio->calle)?$domicilio->calle:old('calle')}}">
-        @error('calle')
-            <small style="color:red;">* {{$message}}</small>
-        @enderror
-        <div class="invalid-feedback">
-            el campo es obligatorio!
+@section('title', 'Domicilio')
+
+@section('content_header')
+    <h1>{{$modo}} DOMICILIO</h1>
+@stop
+
+@section('content')
+    <div class="row">
+        <div class="col-sm-6 mb-3">
+            <div class="card was-validated shadow border border-primary">
+                <div class="card-header text-left" style="background-color: #1F5F96;">
+                    <label for="calle">
+                        <strong style="color:white">Calle:</strong>
+                    </label>
+                </div>
+
+                <div class="card-body">
+                    <input type="text" class="form-control is-valid" id="calle" name="calle"
+                        placeholder="escriba la Calle.." value="{{isset($domicilio->calle)?$domicilio->calle:old('calle')}}" required>
+                    <div class="invalid-feedback">
+                        <strong>*El campo Calle es obligatorio.</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-3 mb-3">
+            <div class="card was-validated shadow border border-primary">
+                <div class="card-header text-left" style="background-color: #1F5F96;">
+                    <label for="numero">
+                        <strong style="color:white">Numero de Calle:</strong>
+                    </label>
+                </div>
+
+                <div class="card-body">
+                    <input type="text" class="form-control is-valid" id="numero" name="numero"
+                        placeholder="ej. S/N.." value="{{isset($domicilio->numero)?$domicilio->numero:old('numero')}}" required>
+                    <div class="invalid-feedback">
+                        <strong>*El campo Numero de Calle es obligatorio.</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-3 mb-3">
+            <div class="card was-validated shadow border border-primary">
+                <div class="card-header text-left" style="background-color: #1F5F96;">
+                    <label for="cp">
+                        <strong style="color:white">Codigo Postal:</strong>
+                    </label>
+                </div>
+
+                <div class="card-body">
+                    <input type="text" class="form-control is-valid" id="cp" name="cp"
+                        placeholder="C.P.." value="{{isset($domicilio->cp)?$domicilio->cp:old('cp')}}" required>
+                    <div class="invalid-feedback">
+                        <strong>*El campo Codigo Postal es obligatorio.</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 mb-3">
+            <div class="card was-validated shadow border border-primary">
+                <div class="card-header text-left" style="background-color: #1F5F96;">
+                    <label for="colonia">
+                        <strong style="color:white">Colonia:</strong>
+                    </label>
+                </div>
+
+                <div class="card-body">
+                    <input type="text" class="form-control is-valid" id="colonia" name="colonia"
+                        placeholder="escriba la Colonia.." value="{{isset($domicilio->colonia)?$domicilio->colonia:old('colonia')}}" required>
+                    <div class="invalid-feedback">
+                        <strong>*El campo Colonia es obligatorio.</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-3 mb-3">
+            <div class="card was-validated shadow border border-primary">
+                <div class="card-header text-left" style="background-color: #1F5F96;">
+                    <label for="municipio">
+                        <strong style="color:white">Municipio:</strong>
+                    </label>
+                </div>
+
+                <div class="card-body">
+                    <input type="text" class="form-control is-valid" id="municipio" name="municipio"
+                        placeholder="escriba el Municipio.." value="{{isset($domicilio->municipio)?$domicilio->municipio:old('municipio')}}" required>
+                    <div class="invalid-feedback">
+                        <strong>*El campo Municipio es obligatorio.</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-3 mb-3">
+            <div class="card was-validated shadow border border-primary">
+                <div class="card-header text-left" style="background-color: #1F5F96;">
+                    <label for="estado">
+                        <strong style="color:white">Estado:</strong>
+                    </label>
+                </div>
+
+                <div class="card-body">
+                    <input type="text" class="form-control is-valid" id="estado" name="estado"
+                        placeholder="escriba el Estado.." value="{{isset($domicilio->estado)?$domicilio->estado:old('estado')}}" required>
+                    <div class="invalid-feedback">
+                        <strong>*El campo Estado es obligatorio.</strong>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <br>
 
-    <div class="col-md-4 mb-3">
-        <label for="validationServer02">Numero</label>
-        <input type="text" class="form-control is-valid" id="numero" name="numero"
-            placeholder="s/n.." value="{{isset($domicilio->numero)?$domicilio->numero:old('numero')}}">
-        @error('numero')
-            <small style="color:red;">* {{$message}}</small>
-        @enderror
-        <div class="invalid-feedback">
-            el campo es obligatorio!
-        </div>
-    </div>
-    <br>
+    <input class="btn btn-success float-right mt-2"type="submit" value="{{$modo2}}">
 
-    <div class="col-md-4 mb-3">
-        <label for="validationServer02">Colonia</label>
-        <input type="text" class="form-control is-valid" id="colonia" name="colonia"
-            placeholder="colonia.." value="{{isset($domicilio->colonia)?$domicilio->colonia:old('colonia')}}">
-        @error('colonia')
-            <small style="color:red;">* {{$message}}</small>
-        @enderror
-        <div class="invalid-feedback">
-            el campo es obligatorio!
-        </div>
-    </div>
-    <br>
+    <a class="btn float-end mt-2" style="background-color: #1F5F96; color:white" href="{{route('domicilios.index')}}">
+        <i class="fas fa-reply"></i> Atras</a>
 
-    <div class="col-md-4 mb-3">
-        <label for="validationServer02">Codigo Postal</label>
-        <input type="text" class="form-control is-valid" id="cp" name="cp"
-            placeholder="cp.." value="{{isset($domicilio->cp)?$domicilio->cp:old('cp')}}">
-        @error('cp')
-            <small style="color:red;">* {{$message}}</small>
-        @enderror
-        <div class="invalid-feedback">
-            el campo es obligatorio!
-        </div>
-    </div>
-    <br>
-
-    <div class="col-md-4 mb-3">
-        <label for="validationServer02">Municipio</label>
-        <input type="text" class="form-control is-valid" id="municipio" name="municipio"
-            placeholder="municipio.." value="{{isset($domicilio->municipio)?$domicilio->municipio:old('municipio')}}">
-        @error('municipio')
-            <small style="color:red;">* {{$message}}</small>
-        @enderror
-        <div class="invalid-feedback">
-            el campo es obligatorio!
-        </div>
-    </div>
-    <br>
-
-    <div class="col-md-4 mb-3">
-        <label for="validationServer02">Estado</label>
-        <input type="text" class="form-control is-valid" id="estado" name="estado"
-            placeholder="estado.." value="{{isset($domicilio->estado)?$domicilio->estado:old('estado')}}">
-        @error('estado')
-            <small style="color:red;">* {{$message}}</small>
-        @enderror
-        <div class="invalid-feedback">
-            el campo es obligatorio!
-        </div>
-    </div>
-    <br>
-
-
-</div>
-
-<input type="submit" value="{{$modo}}">
+@stop

@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tipo;
-use App\Http\Requests\StoreTipoRequest;
-use App\Http\Requests\UpdateTipoRequest;
+use Illuminate\Http\Request;
 
+/**
+ * Class TipoController
+ * @package App\Http\Controllers
+ */
 class TipoController extends Controller
 {
     /**
@@ -15,7 +18,10 @@ class TipoController extends Controller
      */
     public function index()
     {
-        //
+        $tipos = Tipo::paginate();
+
+        return view('tipo.index', compact('tipos'))
+            ->with('i', (request()->input('page', 1) - 1) * $tipos->perPage());
     }
 
     /**
@@ -25,62 +31,79 @@ class TipoController extends Controller
      */
     public function create()
     {
-        //
+        $tipo = new Tipo();
+        return view('tipo.create', compact('tipo'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreTipoRequest  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreTipoRequest $request)
+    public function store(Request $request)
     {
-        //
+        request()->validate(Tipo::$rules);
+
+        $tipo = Tipo::create($request->all());
+
+        return redirect()->route('tipos.index')
+            ->with('mensaje','Tipo de programa agregado corectamente!');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Tipo  $tipo
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Tipo $tipo)
+    public function show($id)
     {
-        //
+        $tipo = Tipo::find($id);
+
+        return view('tipo.show', compact('tipo'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Tipo  $tipo
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tipo $tipo)
+    public function edit($id)
     {
-        //
+        $tipo = Tipo::find($id);
+
+        return view('tipo.edit', compact('tipo'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateTipoRequest  $request
-     * @param  \App\Models\Tipo  $tipo
+     * @param  \Illuminate\Http\Request $request
+     * @param  Tipo $tipo
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateTipoRequest $request, Tipo $tipo)
+    public function update(Request $request, Tipo $tipo)
     {
-        //
+        request()->validate(Tipo::$rules);
+
+        $tipo->update($request->all());
+
+        return redirect()->route('tipos.index')
+            ->with('mensaje','Tipo de programa actualizado corectamente!');
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Tipo  $tipo
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
      */
-    public function destroy(Tipo $tipo)
+    public function destroy($id)
     {
-        //
+        $tipo = Tipo::find($id)->delete();
+
+        return redirect()->route('tipos.index')
+            ->with('mensaje','Tipo de programa eliminado corectamente!');
     }
 }

@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Statu;
+//use App\Models\Statu;
+use App\Models\Estado;
 use App\Models\Empresa;
 use App\Models\Proyectograma;
 use App\Http\Requests\StoreProyectogramaRequest;
@@ -28,9 +29,10 @@ class ProyectogramaController extends Controller
      */
     public function create()
     {
-        $status = Statu::all();
+        //$status = Statu::all();
+        $estados = Estado::all();
         $empresas = Empresa::all();
-        return view('proyectograma.create',compact('status','empresas'));
+        return view('proyectograma.create',compact('estados','empresas'));
     }
 
     /**
@@ -45,7 +47,7 @@ class ProyectogramaController extends Controller
         $proyectograma->nombre = $request->nombre;
         $proyectograma->nalumnos = $request->nalumnos;
         $proyectograma->flimite = $request->flimite;
-        $proyectograma->statu_id = $request->statu_id;
+        $proyectograma->estado_id = $request->estado_id;
         $proyectograma->empresa_id = $request->empresa_id;
         $proyectograma->save();
         return redirect('proyectogramas')->with('mensaje','Registro agregado corectamente!');
@@ -70,9 +72,10 @@ class ProyectogramaController extends Controller
      */
     public function edit(Proyectograma $proyectograma)
     {
-        $status = Statu::all();
+        //$status = Statu::all();
+        $estados = Estado::all();
         $empresas = Empresa::all();
-        return view('proyectograma.edit',compact('proyectograma','status','empresas'));
+        return view('proyectograma.edit',compact('proyectograma','estados','empresas'));
     }
 
     /**
@@ -87,7 +90,7 @@ class ProyectogramaController extends Controller
         $proyectograma->nombre = $request->nombre;
         $proyectograma->nalumnos = $request->nalumnos;
         $proyectograma->flimite = $request->flimite;
-        $proyectograma->statu_id = $request->statu_id;
+        $proyectograma->estado_id = $request->estado_id;
         $proyectograma->empresa_id = $request->empresa_id;
         $proyectograma->save();
         return redirect('proyectogramas')->with('mensaje','Registro actualizado corectamente!');

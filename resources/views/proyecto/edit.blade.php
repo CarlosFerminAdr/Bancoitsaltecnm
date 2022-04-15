@@ -1,18 +1,37 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <form action="{{route('proyectos.update',$proyecto)}}" method="POST">
+@extends('adminlte::page')
+
+@section('title', 'Proyecto')
+
+@section('content_header')
+    <h1>EDITAR PROYECTO</h1>
+@stop
+
+@section('content')
+    <form action="{{route('proyectos.update',$proyecto)}}" method="POST" autocomplete="off">
         @csrf
         @method('PUT')
-        @include('proyecto.form',['modo'=>'EDITAR'])
+        @include('proyecto.form',['modo'=>'Editar'])
     </form>
     <br>
-    <a href="{{route('proyectos.index')}}">Atras</a>
-</body>
-</html>
+@stop
+
+@section('js')
+    <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
+    {{--
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#objetivo' ) )
+            .catch( error => {
+                console.error( error );
+            } );
+    </script>
+
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#problematica' ) )
+            .catch( error => {
+                console.error( error );
+            } );
+    </script>
+    --}}
+@stop

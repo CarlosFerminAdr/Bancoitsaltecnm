@@ -23,4 +23,9 @@ class Empresa extends Model
     public function proyectogramas(){
         return $this->hasMany('App\Models\Proyectograma');
     }
+
+     //RELACION UNO A MUCHOS
+     public function Proyectos(){
+        return $this->hasMany('App\Models\Proyecto');
+    }
 }

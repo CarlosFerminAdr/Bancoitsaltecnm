@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('periodo_proyectograma', function (Blueprint $table) {
             $table->id();
+            /*
             $table->unsignedBigInteger('periodo_id');
             $table->foreign('periodo_id')
                 ->references('id')
@@ -28,6 +29,7 @@ return new class extends Migration
                 ->on('proyectogramas')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
+                */
             $table->timestamps();
         });
     }

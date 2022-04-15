@@ -17,8 +17,9 @@ class AlumnoController extends Controller
      */
     public function index()
     {
-        $alumnos = Alumno::paginate(5);
-        return view('alumno/index',compact('alumnos'));
+        $alumnos = Alumno::where('user_id', auth()->user()->id)->paginate();
+        return view('alumno/index',compact('alumnos'))
+            ->with('i', (request()->input('page', 1) - 1) * $alumnos->perPage());
     }
 
     /**

@@ -15,8 +15,9 @@ return new class extends Migration
     {
         Schema::create('tipos', function (Blueprint $table) {
             $table->id();
-            $table->enum('tipo_programa',['Educación para adultos','Desarrollo de comunidad',
-            'Actividades deportivas','Actividades culturales','PRONASOL','Otros']);
+            $table->string('tipo_programa');
+            //$table->enum('tipo_programa',['Educación para adultos','Desarrollo de comunidad',
+            //'Actividades deportivas','Actividades culturales','PRONASOL','Otros']);
             $table->timestamps();
         });
     }

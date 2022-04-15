@@ -16,8 +16,9 @@ class JdeptoController extends Controller
      */
     public function index()
     {
-        $jdeptos = Jdepto::paginate(5);
-        return view('jdepto/index',compact('jdeptos'));
+        $jdeptos = Jdepto::where('user_id', auth()->user()->id)->paginate();
+        return view('jdepto/index',compact('jdeptos'))
+            ->with('i', (request()->input('page', 1) - 1) * $jdeptos->perPage());
     }
 
     /**

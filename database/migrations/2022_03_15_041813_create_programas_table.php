@@ -17,10 +17,18 @@ return new class extends Migration
             $table->id();
             $table->text('actividades');
             $table->unsignedBigInteger('tipo_id')->nullable();
+            $table->unsignedBigInteger('user_id');
+
             $table->foreign('tipo_id')
                 ->references('id')
                 ->on('tipos')
                 ->onDelete('set null')
+                ->onUpdate('cascade');
+
+                $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->timestamps();
         });

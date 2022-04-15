@@ -17,6 +17,13 @@ return new class extends Migration
             $table->id();
             $table->text('objetivo');
             $table->text('problematica');
+            $table->unsignedBigInteger('user_id');
+
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
             /*
             $table->unsignedBigInteger('proyectograma_id')->unique();
             $table->foreign('proyectograma_id')

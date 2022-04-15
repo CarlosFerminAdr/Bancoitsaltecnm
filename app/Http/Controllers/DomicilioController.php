@@ -15,8 +15,9 @@ class DomicilioController extends Controller
      */
     public function index()
     {
-        $domicilios = Domicilio::paginate(10);
-        return view('domicilio/index',compact('domicilios'));
+        $domicilios = Domicilio::paginate();
+        return view('domicilio/index',compact('domicilios'))
+            ->with('i', (request()->input('page', 1) - 1) * $domicilios->perPage());
     }
 
     /**
@@ -54,7 +55,7 @@ class DomicilioController extends Controller
         $domicilio->municipio = $request->municipio;
         $domicilio->estado = $request->estado;
         $domicilio->save();
-        return redirect('domicilios')->with('mensaje','Domicilio agregado corectamente!');
+        return redirect('empresas/create')->with('mensaje','Domicilio agregado corectamente!');
     }
 
     /**
