@@ -13,7 +13,7 @@
 @stop
 
 @section('content')
-    @if (Session('mensaje') == 'Proyecto agregado corectamente!')
+    @if (Session('mensaje') == 'Estatus agregado corectamente!')
         <div class="alert alert-success alert-dismissible fade show" role="alert" style="color:black">
             <strong>{{Session('mensaje')}}</strong>
             <button type="button"class="close" data-dismiss="alert" aria-label="close">
@@ -21,7 +21,7 @@
             </button>
         </div>
     @endif
-    @if (Session('mensaje') == 'Proyecto actualizado corectamente!')
+    @if (Session('mensaje') == 'Estatus actualizado corectamente!')
         <div class="alert alert-warning alert-dismissible fade show" role="alert" style="color:black">
             <strong>{{Session('mensaje')}}</strong>
             <button type="button"class="close" data-dismiss="alert" aria-label="close">
@@ -29,7 +29,7 @@
             </button>
         </div>
     @endif
-    @if (Session('mensaje') == 'Proyecto eliminado corectamente!')
+    @if (Session('mensaje') == 'Estatus eliminado corectamente!')
         <div class="alert alert-danger alert-dismissible fade show" role="alert" style="color:black">
             <strong>{{Session('mensaje')}}</strong>
             <button type="button"class="close" data-dismiss="alert" aria-label="close">

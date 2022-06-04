@@ -10,9 +10,11 @@
             <div class="card-body">
                 <input type="text" class="form-control is-valid" id="nombre" name="nombre"
                     placeholder="escriba un Nombre.." value="{{isset($proyecto->proyectograma->nombre)?$proyecto->proyectograma->nombre:old('nombre')}}" required>
-                <div class="invalid-feedback">
-                    <strong>*El campo Nombre del Proyecto es obligatorio.</strong>
-                </div>
+                @error('nombre')
+                    <div style="color:red;">
+                        <strong>* {{ $message }}</strong>
+                    </div>
+                @enderror
             </div>
         </div>
     </div>
@@ -27,9 +29,11 @@
             <div class="card-body">
                 <input type="number" class="form-control is-valid" id="nalumnos" name="nalumnos" min="0" max="999"
                     placeholder="0.." value="{{isset($proyecto->proyectograma->nalumnos)?$proyecto->proyectograma->nalumnos:old('nalumnos')}}" required>
-                <div class="invalid-feedback">
-                    <strong>*El campo número de Alumnos es obligatorio.</strong>
-                </div>
+                @error('nalumnos')
+                    <div style="color:red;">
+                        <strong>* {{ $message }}</strong>
+                    </div>
+                @enderror
             </div>
         </div>
     </div>
@@ -42,16 +46,24 @@
                 </label>
             </div>
             <div class="card-body">
-                <select class="custom-select" name="empresa_id" id="empresa_id" required>
-                    <option value="">-Seleccionar-</option>
-                        @foreach ( $empresas as $e )
-                        <option value="{{$e->id}}"
-                            {{(isset($proyecto->proyectograma->empresa_id) && $proyecto->proyectograma->empresa_id == $e->id)?'selected':''}}
-                            >{{$e->nombre}}</option>
-                    @endforeach
-                </select>
-                <div class="invalid-feedback">
-                    <strong>*El campo Empresa es obligatorio.</strong>
+                <div class="input-group">
+                    <select class="custom-select" name="empresa_id" id="empresa_id" required>
+                        <option value="">-Seleccionar-</option>
+                            @foreach ( $empresas as $e )
+                            <option value="{{$e->id}}"
+                                {{(isset($proyecto->proyectograma->empresa_id) && $proyecto->proyectograma->empresa_id == $e->id)?'selected':''}}
+                                >{{$e->nombre}}</option>
+                        @endforeach
+                    </select>
+                    <div class="input-group-prepend">
+                        <a class="btn" style="background-color: #1F5F96; color:white" href="{{route('empresas.create')}}">
+                            <i class="fas fa-plus-square"></i> Registrar</a>
+                    </div>
+                    @error('empresa_id')
+                        <div style="color:red;">
+                            <strong>* {{ $message }}</strong>
+                        </div>
+                    @enderror
                 </div>
             </div>
         </div>
@@ -67,9 +79,11 @@
             <div class="card-body">
                 <input type="date" class="form-control is-valid" id="flimite" name="flimite"
                     placeholder="primer apelldo.." value="{{isset($proyecto->proyectograma->flimite)?$proyecto->proyectograma->flimite:old('flimite')}}" required>
-                <div class="invalid-feedback">
-                    <strong>*El campo Fecha es obligatorio.</strong>
-                </div>
+                @error('flimite')
+                    <div style="color:red;">
+                        <strong>* {{ $message }}</strong>
+                    </div>
+                @enderror
             </div>
         </div>
     </div>
@@ -83,15 +97,25 @@
             </div>
             <div class="card-body">
                 @foreach ( $carreras as $ca )
-                <label class="mr-4">
-                    <input type="checkbox" name="carreras[]" value="{{$ca->id}}">{{$ca->nombre}}
-                </label>
+                    <label class="mr-4">
+                        @if (isset($proyecto->carrera_id))
+                        <input type="radio" name="carrera_id" value="{{$ca->id}}"
+                            {{(isset($ca->id) && $ca->id == $proyecto->carrera_id)?'checked':''}}>{{$ca->nombre}}
+                        @else
+                            <input type="radio" name="carrera_id" value="{{$ca->id}}">{{$ca->nombre}}
+                        @endif
+                    </label>
                 @endforeach
+                @error('carrera_id')
+                    <div style="color:red;">
+                        <strong>* {{ $message }}</strong>
+                    </div>
+                @enderror
             </div>
         </div>
     </div>
 
-    <div class="col-sm-6 mb-3">
+    <div class="col-sm-12 mb-3">
         <div class="card was-validated shadow border border-primary">
             <div class="card-header text-left" style="background-color: #1F5F96;">
                 <label for="periodo_id">
@@ -100,27 +124,20 @@
             </div>
             <div class="card-body">
                 @foreach ( $periodos as $pe )
-                <label class="mr-4">
-                    <input type="checkbox" name="periodos[]" value="{{$pe->id}}">{{$pe->nombre}}
-                </label>
+                    <label class="mr-4">
+                        @if (isset($proyecto->periodo_id))
+                            <input type="radio" name="periodo_id" value="{{$pe->id}}"
+                            {{(isset($pe->id) && $pe->id == $proyecto->periodo_id)?'checked':''}}>{{$pe->nombre}}
+                        @else
+                            <input type="radio" name="periodo_id" value="{{$pe->id}}">{{$pe->nombre}}
+                        @endif
+                    </label>
                 @endforeach
-            </div>
-        </div>
-    </div>
-
-    <div class="col-sm-6 mb-3">
-        <div class="card was-validated shadow border border-primary">
-            <div class="card-header text-left" style="background-color: #1F5F96;">
-                <label for="status">
-                    <strong style="color:white">Estado del Proyecto:</strong>
-                </label>
-            </div>
-            <div class="card-body">
-                @foreach ( $estados as $e )
-                <label class="mr-4">
-                    <input type="radio" name="status" value="{{$e->id}}">{{$e->tipo_status}}
-                </label>
-                @endforeach
+                @error('periodo_id')
+                    <div style="color:red;">
+                        <strong>* {{ $message }}</strong>
+                    </div>
+                @enderror
             </div>
         </div>
     </div>
@@ -135,11 +152,13 @@
                 </label>
             </div>
             <div class="card-body">
-                <textarea name="objetivo" id="objetivo" rows="4" class="form-control"
+                <textarea name="objetivo" id="objetivo" rows="3" class="form-control"
                     required>{{isset($proyecto->objetivo)?$proyecto->objetivo:old('objetivo')}}</textarea>
-                <div class="invalid-feedback">
-                    <strong>*El campo Objetivo es obligatorio.</strong>
-                </div>
+                @error('objetivo')
+                    <div style="color:red;">
+                        <strong>* {{ $message }}</strong>
+                    </div>
+                @enderror
             </div>
         </div>
     </div>
@@ -152,11 +171,13 @@
                 </label>
             </div>
             <div class="card-body">
-                <textarea name="problematica" id="problematica" rows="4" class="form-control"
+                <textarea name="problematica" id="problematica" rows="3" class="form-control"
                     required>{{isset($proyecto->problematica)?$proyecto->problematica:old('problematica')}}</textarea>
-                <div class="invalid-feedback">
-                    <strong>*El campo Problematica es obligatorio.</strong>
-                </div>
+                @error('problematica')
+                    <div style="color:red;">
+                        <strong>* {{ $message }}</strong>
+                    </div>
+                @enderror
             </div>
         </div>
     </div>
@@ -164,7 +185,11 @@
 </div>
 
 <input class="btn btn-success float-right mt-2" type="submit" value="{{$modo}}">
-
-<a class="btn float-end mt-2" style="background-color: #1F5F96; color:white" href="{{route('proyectos.index')}}">
-    <i class="fas fa-reply"></i> Atras</a>
-
+@can('proyectos.index')
+    <a class="btn float-end mt-2" style="background-color: #1F5F96; color:white" href="{{route('proyectos.index')}}">
+        <i class="fas fa-reply"></i> Atras</a>
+@endcan
+@can('admin.proyectos')
+    <a class="btn float-end mt-2" style="background-color: #1F5F96; color:white" href="{{route('admin.proyectos')}}">
+        <i class="fas fa-reply"></i> Atras</a>
+@endcan

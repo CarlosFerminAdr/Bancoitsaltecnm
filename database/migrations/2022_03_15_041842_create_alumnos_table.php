@@ -30,8 +30,21 @@ return new class extends Migration
                 ->onDelete('set null')
                 ->onUpdate('cascade');
 
+            $table->unsignedBigInteger('programa_id')->nullable();
+            $table->foreign('programa_id')
+                ->references('id')
+                ->on('programas')
+                ->onDelete('set null')
+                ->onUpdate('set null');
 
-            $table->unsignedBigInteger('user_id')->unique();
+            $table->unsignedBigInteger('proyecto_id')->nullable();
+            $table->foreign('proyecto_id')
+                ->references('id')
+                ->on('proyectos')
+                ->onDelete('set null')
+                ->onUpdate('set null');
+
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')

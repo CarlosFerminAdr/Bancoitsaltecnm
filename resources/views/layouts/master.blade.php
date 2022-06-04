@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>ITSAL | BANCO DE PROYECTOS</title>
+        <link rel="shortcut icon" href="vendor/img/LOGO-ITSAL.png" type="image/x-icon">
 
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -23,49 +26,48 @@
         integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     </head>
-<body>
-    {{ View::make('header') }}
-    @yield('content')
-    {{ View::make('footer') }}
-</body>
-<style>
-    .custom-login {
-        height: 515px;
-        padding: 50px;
-    }
+    <body>
+        {{ View::make('header') }}
+        @yield('content')
+        {{ View::make('footer') }}
+    </body>
+    <style>
+        .custom-login {
+            height: 509px;
+            padding: 50px;
+        }
 
-    .custom-register {
-        height: 515px;
-        padding: 50px;
-    }
+        .custom-register {
+            height: 509px;
+            padding: 50px;
+        }
 
-    section {
-        padding: 5px ;
-    }
+        section {
+            padding: 5px ;
+        }
 
-    #header {
-        background: #1F5F96 !important;
-    }
+        #header {
+            background: #1c5b92 !important;
+        }
 
-    #footer {
-        background: #1b396a !important;
-    }
+        #footer {
+            background: #1b396a !important;
+        }
 
-    .btn {
-        background: #1F5F96 !important;
-    }
+        .btn {
+            background: #1F5F96 !important;
+        }
 
-    .form-control::placeholder{
-        font-family: "Font Awesome 6 Free";
-        font-weight: 900;
-    }
+        .form-control::placeholder{
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+        }
 
-    .center {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        width: 20%;
-    }
-
-</style>
+        .center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 20%;
+        }
+    </style>
 </html>

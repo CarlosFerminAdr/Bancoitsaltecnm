@@ -45,36 +45,56 @@
                 <thead class="thead" style="background-color: #1F5F96;">{{--DodgerBlue;--}}
                     <tr style='color:white; text-align:center'>
                         <th scope="col">#</th>
+                        {{--<th scope="col">Empresa</th>--}}
                         <th scope="col">Proyecto</th>
-                        <th scope="col">No. Alumnos</th>
+                        <th scope="col">Periodo</th>
                         <th scope="col">Fecha</th>
-                        <th scope="col">Objetivo</th>
-                        <th scope="col">Problematica</th>
-                        <th scope="col">Editar</th>
-                        <th scope="col">Eliminar</th>
+                        {{--<th scope="col">Problematica</th>--}}
+                        <th scope="col">Estatus</th>
+                        @can('proyectos.edit')
+                            <th scope="col">Editar</th>
+                        @endcan
+                        @can('proyectos.destroy')
+                            <th scope="col">Eliminar</th>
+                        @endcan
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ( $proyectos as $x )
                         <tr style='color:black; text-align:center'>
                             <th scope="row">{{ ++$i }}</th>
+                            {{--<td>{{$x->proyectograma->empresa->nombre}}</td>--}}
                             <td>{{ $x->proyectograma->nombre }}</td>
-                            <td>{{ $x->proyectograma->nalumnos }}</td>
+                            <td>{{ $x->periodo->nombre }}</td>
                             <td>{{ $x->proyectograma->flimite }}</td>
-                            <td>{!! $x->objetivo !!}</td>
-                            <td>{!! $x->problematica !!}</td>
-                            <td>
-                                <a class="btn btn-warning" href="{{route('proyectos.edit',$x)}}">
-                                    <i class="fas fa-highlighter"></i></a>
-                            <td>
-                                <form action="{{route('proyectos.destroy',$x)}}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger" type="submit" onclick="return confirm('¿Desea eliminar el registro?');">
-                                        <i class="far fa-trash-alt"></i>
-                                    </button>
-                                </form>
+                            {{--<td>{!! $x->objetivo !!}</td>--}}
+                            {{--<td>{!! $x->problematica !!}</td>--}}
+                            <td id="resp{{ $x->id }}">
+                                @if($x->status == 1)
+                                <button type="button" class="btn btn-warning col-sm-12">En Proceso</button>
+                                    @elseif ($x->status == 2)
+                                <button type="button" class="btn btn-danger col-sm-12">Asignado</button>
+                                    @elseif ($x->status == 3)
+                                <button type="button" class="btn btn-success col-sm-12">Disponible</button>
+                                @endif
                             </td>
+                            @can('proyectos.edit')
+                                <td>
+                                    <a class="btn btn-warning" href="{{route('proyectos.edit',$x)}}">
+                                        <i class="fas fa-highlighter"></i></a>
+                                </td>
+                            @endcan
+                            @can('proyectos.destroy')
+                                <td>
+                                    <form action="{{route('proyectos.destroy',$x)}}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-danger" type="submit" onclick="return confirm('¿Desea eliminar el registro?');">
+                                            <i class="far fa-trash-alt"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            @endcan
                         </tr>
                     @endforeach
                 </tbody>

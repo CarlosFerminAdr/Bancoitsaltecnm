@@ -3,7 +3,7 @@
 @section('title', 'Empresas')
 
 @section('content_header')
-    <h1>EMPRESAS</h1>
+    <h1>EMPRESA</h1>
 @stop
 
 @section('css')
@@ -51,8 +51,12 @@
                         <th scope="col">TELÉFONO</th>
                         <th scope="col">TITULAR</th>
                         <th scope="col">DOMICILIO</th>
-                        <th scope="col">Editar</th>
-                        <th scope="col">Eliminar</th>
+                        @can('empresas.edit')
+                            <th scope="col">Editar</th>
+                        @endcan
+                        @can('empresas.destroy')
+                            <th scope="col">Eliminar</th>
+                        @endcan
                     </tr>
                 </thead>
                 <tbody>
@@ -66,18 +70,23 @@
                             <td>{{$e->telefono}}</td>
                             <td>{{$e->titular}}</td>
                             <td>{{$e->domicilio->calle}}</td>
-                            <td>
-                                <a class="btn btn-warning" href="{{route('empresas.edit',$e)}}">
-                                    <i class="fas fa-highlighter"></i></a>
-                            <td>
-                                <form action="{{route('empresas.destroy',$e)}}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger" type="submit" onclick="return confirm('¿Desea eliminar el registro?');">
-                                        <i class="far fa-trash-alt"></i>
-                                    </button>
-                                </form>
-                            </td>
+                            @can('empresas.edit')
+                                <td>
+                                    <a class="btn btn-warning" href="{{route('empresas.edit',$e)}}">
+                                        <i class="fas fa-highlighter"></i></a>
+                                </td>
+                            @endcan
+                            @can('empresas.destroy')
+                                <td>
+                                    <form action="{{route('empresas.destroy',$e)}}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-danger" type="submit" onclick="return confirm('¿Desea eliminar el registro?');">
+                                            <i class="far fa-trash-alt"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            @endcan
                         </tr>
                     @endforeach
                 </tbody>

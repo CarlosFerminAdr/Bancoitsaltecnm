@@ -21,6 +21,12 @@ return new class extends Migration
             $table->integer('cp');
             $table->string('municipio');
             $table->string('estado');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('set null')
+                ->onUpdate('cascade');
             $table->timestamps();
         });
     }

@@ -9,6 +9,8 @@ class Jdepto extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['apaterno', 'amaterno', 'nombre', 'departamento', 'user_id'];
+
     //RELACION UNO A UNO INVERSA
     public function user(){
         return $this->belongsTo('App\Models\User');

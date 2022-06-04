@@ -44,34 +44,49 @@
                 <thead class="thead" style="background-color: #1F5F96;">
                     <tr style='color:white; text-align:center'>
                         <th scope="col">#</th>
+                        <th scope="col">Empresa</th>
                         <th scope="col">DIRECCIÓN</th>
                         <th scope="col">C. P.</th>
                         <th scope="col">MUNICIPIO</th>
                         <th scope="col">ESTADO</th>
-                        <th scope="col">Editar</th>
-                        <th scope="col">Eliminar</th>
+                        @can('domicilios.edit')
+                            <th scope="col">Editar</th>
+                        @endcan
+                        @can('domicilios.destroy')
+                            <th scope="col">Eliminar</th>
+                        @endcan
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ( $domicilios as $d )
                         <tr style='color:black; text-align:center'>
                             <th scope="row">{{ ++$i }}</th>
+                            @if (isset($d->empresa->nombre))
+                                <td>{{ $d->empresa->nombre }}</td>
+                            @else
+                                <td>Empresa No.{{$d->id}}</td>
+                            @endif
                             <td>Calle. {{$d->calle}}, {{$d->numero}}, Col. {{$d->colonia}}</td>
                             <td>{{$d->cp}}</td>
                             <td>{{$d->municipio}}</td>
                             <td>{{$d->estado}}</td>
-                            <td>
-                                <a class="btn btn-warning" href="{{route('domicilios.edit',$d)}}">
-                                    <i class="fas fa-highlighter"></i></a>
-                            <td>
-                                <form action="{{route('domicilios.destroy',$d)}}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger" type="submit" onclick="return confirm('¿Desea eliminar el registro?');">
-                                        <i class="far fa-trash-alt"></i>
-                                    </button>
-                                </form>
-                            </td>
+                            @can('domicilios.edit')
+                                <td>
+                                    <a class="btn btn-warning" href="{{route('domicilios.edit',$d)}}">
+                                        <i class="fas fa-highlighter"></i></a>
+                                </td>
+                            @endcan
+                            @can('domicilios.destroy')
+                                <td>
+                                    <form action="{{route('domicilios.destroy',$d)}}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-danger" type="submit" onclick="return confirm('¿Desea eliminar el registro?');">
+                                            <i class="far fa-trash-alt"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            @endcan
                         </tr>
                     @endforeach
                 </tbody>

@@ -28,9 +28,11 @@
                 <div class="card-body">
                     <input type="text" class="form-control is-valid" id="tipo_status" name="tipo_status"
                         placeholder="escriba el Estatus.." value="{{isset($estado->tipo_status)?$estado->tipo_status:old('tipo_status')}}" required>
-                    <div class="invalid-feedback">
-                        <strong>*El campo Estataus es obligatorio.</strong>
-                    </div>
+                    @error('tipo_status')
+                        <div style="color:red;">
+                            <strong>* {{ $message }}</strong>
+                        </div>
+                    @enderror
                 </div>
             </div>
         </div>

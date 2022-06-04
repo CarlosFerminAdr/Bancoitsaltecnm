@@ -9,7 +9,21 @@ class Proyecto extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['objetivo', 'problematica', 'user_id'];
+    protected $fillable = ['objetivo', 'problematica', 'status', 'periodo_id', 'carrera_id', 'user_id'];
+
+    // RELACION UNO A MUCHOS
+    public function alumnos(){
+        return $this->hasMany('App\Models\Alumno');
+    }
+
+    // RELACION UNO A MUCHOS INVERSA
+    public function carrera(){
+        return $this->belongsTo('App\Models\Carrera');
+    }
+
+    public function periodo(){
+        return $this->belongsTo('App\Models\Periodo');
+    }
 
     // RELACION UNO A UNO POLIMORFICA
     public function proyectograma(){
@@ -46,5 +60,10 @@ class Proyecto extends Model
     //RELACION UNO A UNO
     public function registro(){
         return $this->hasOne('App\Models\Registro');
+    }
+
+    //RELACION UNO A UNO
+    public function solicita(){
+        return $this->hasOne('App\Models\Solicita');
     }
 }

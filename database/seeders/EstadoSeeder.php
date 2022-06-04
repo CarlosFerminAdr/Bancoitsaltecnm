@@ -2,18 +2,25 @@
 
 namespace Database\Seeders;
 
+use App\Models\Estado;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class EstadoSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
-    {
-        //
+
+    public function run(){
+
+        Estado::create([
+            'tipo_status' => 'EN PROCESO'
+        ]);
+
+        Estado::create([
+            'tipo_status' => 'ASIGNADO'
+        ]);
+
+        Estado::create([
+            'tipo_status' => 'DISPONIBLE'
+        ]);
     }
 }

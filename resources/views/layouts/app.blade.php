@@ -76,9 +76,7 @@
         </nav>
 
         <main class="py-4">
-            {{ View::make('header') }}
             @yield('content')
-            {{ View::make('footer') }}
         </main>
     </div>
 </body>

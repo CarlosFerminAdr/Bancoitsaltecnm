@@ -7,6 +7,7 @@
 @stop
 
 @section('css')
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap4.min.css">
@@ -40,7 +41,7 @@
     <br>
     <div class="card table-responsive">
         <div class="card-body">
-            <table id="proyectos" class="table table-hover table-bordered dt-responsive nowrap table-primary" style="background-color: white;">
+            <table id="proyectos" class="table table-hover table-bordered dt-responsive nowrap" style="background-color: white;">
                 <thead class="thead" style="background-color: #1F5F96;">
                     <tr style='color:white; text-align:center'>
                         <th scope="col">#</th>
@@ -48,34 +49,43 @@
                         {{--<th scope="col">No. Control</th>
                         <th scope="col">NIP</th>--}}
                         <th scope="col">Correo</th>
-                        <th scope="col">Telefono</th>
+                        {{--<th scope="col">Telefono</th>--}}
                         <th scope="col">Carrera</th>
-                        <th scope="col">Editar</th>
-                        <th scope="col">Eliminar</th>
+                        @can('alumnos.edit')
+                            <th scope="col">Editar</th>
+                        @endcan
+                        @can('alumnos.destroy')
+                            <th scope="col">Eliminar</th>
+                        @endcan
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ( $alumnos as $a )
                         <tr style='color:black; text-align:center'>
                             <th scope="row">{{ ++$i }}</th>
-                            <th>{{$a->nombre}} {{$a->apaterno}} {{$a->amaterno}}</th>
+                            <td>{{$a->nombre}} {{$a->apaterno}} {{$a->amaterno}}</td>
                             {{--<th>{{$a->ncontrol}}</th>
                             <th>{{$a->nip}}</th>--}}
-                            <th>{{$a->correo}}</th>
-                            <th>{{$a->telefono}}</th>
-                            <th>{{$a->carrera->nombre}}</th>
-                            <td>
-                                <a class="btn btn-warning" href="{{route('alumnos.edit',$a)}}">
-                                    <i class="fas fa-highlighter"></i></a>
-                            <td>
-                                <form action="{{route('alumnos.destroy',$a)}}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger" type="submit" onclick="return confirm('¿Desea eliminar el registro?');">
-                                        <i class="far fa-trash-alt"></i>
-                                    </button>
-                                </form>
-                            </td>
+                            <td>{{$a->correo}}</td>
+                            {{--<td>{{$a->telefono}}</td>--}}
+                            <td>{{$a->carrera->nombre}}</td>
+                            @can('alumnos.edit')
+                                <td>
+                                    <a class="btn btn-warning" href="{{route('alumnos.edit',$a)}}">
+                                        <i class="fas fa-highlighter"></i></a>
+                                </td>
+                            @endcan
+                            @can('alumnos.destroy')
+                                <td>
+                                    <form action="{{route('alumnos.destroy',$a)}}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-danger" type="submit" onclick="return confirm('¿Desea eliminar el registro?');">
+                                            <i class="far fa-trash-alt"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            @endcan
                         </tr>
                     @endforeach
                 </tbody>
@@ -87,6 +97,8 @@
 @stop
 
 @section('js')
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>

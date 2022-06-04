@@ -19,9 +19,11 @@
                 <div class="card-body">
                     <input type="text" class="form-control is-valid" id="tipo_programa" name="tipo_programa"
                         placeholder="escriba tipo de Programa.." value="{{isset($tipo->tipo_programa)?$tipo->tipo_programa:old('tipo_programa')}}" required>
-                    <div class="invalid-feedback">
-                        <strong>*El campo tipo de Programa es obligatorio.</strong>
-                    </div>
+                    @error('tipo_programa')
+                        <div style="color:red;">
+                            <strong>* {{ $message }}</strong>
+                        </div>
+                    @enderror
                 </div>
             </div>
         </div>

@@ -19,8 +19,17 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->enum('tipo_user',['Alumno','Empresa','Jefe Depto','Administrador']);
+            $table->enum('tipo_user',['Administrador','Jefe Depto','Empresa','Alumno','Nuevo']);
+            //$table->string('ncontrol')->nullable()->unique();
+            $table->string('status');
+            //$table->unsignedBigInteger('role_id')->nullable();
             $table->rememberToken();
+
+            /*$table->foreign('role_id')
+                ->references('id')
+                ->on('roles')
+                ->onDelete('set null')
+                ->onUpdate('cascade');*/
             $table->timestamps();
         });
     }

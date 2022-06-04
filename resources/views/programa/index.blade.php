@@ -45,36 +45,57 @@
                 <thead class="thead" style="background-color: #1F5F96;">
                     <tr style='color:white; text-align:center'>
                         <th scope="col">#</th>
+                        {{--<th scope="col">Empresa</th>--}}
                         <th scope="col">Programa</th>
-                        <th scope="col">No. Alumnos</th>
+                        <th scope="col">Periodo</th>
+                        {{--<th scope="col">Tipo de Programa</th>--}}
                         <th scope="col">Fecha</th>
-                        <th scope="col">Tipo de Programa</th>
-                        <th scope="col">Actividades</th>
-                        <th scope="col">Editar</th>
-                        <th scope="col">Eliminar</th>
+                        {{--<th scope="col">Actividades</th>--}}
+                        <th scope="col">Estatus</th>
+                        @can('programas.edit')
+                            <th scope="col">Editar</th>
+                        @endcan
+                        @can('programas.destroy')
+                            <th scope="col">Eliminar</th>
+                        @endcan
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ( $programas as $y )
                         <tr style='color:black; text-align:center'>
                             <th scope="row">{{ ++$i }}</th>
-                            <td>{{$y->proyectograma->nombre}}</td>
-                            <td>{{$y->proyectograma->nalumnos}}</td>
-                            <td>{{$y->proyectograma->flimite}}</td>
-                            <td>{{$y->tipo->tipo_programa}}</td>
-                            <td>{!!$y->actividades!!}</td>
-                            <td>
-                                <a class="btn btn-warning" href="{{route('programas.edit',$y)}}">
-                                    <i class="fas fa-highlighter"></i></a>
-                            <td>
-                                <form action="{{route('programas.destroy',$y)}}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger" type="submit" onclick="return confirm('¿Desea eliminar el registro?');">
-                                        <i class="far fa-trash-alt"></i>
-                                    </button>
-                                </form>
+                            {{--<td>{{$y->proyectograma->empresa->nombre}}</td>--}}
+                            <td>{{ $y->proyectograma->nombre }}</td>
+                            <td>{{ $y->periodo->nombre }}</td>
+                            {{--<td>{{ $y->tipo->tipo_programa }}</td>--}}
+                            <td>{{ $y->proyectograma->flimite }}</td>
+                            {{--<td>{!!$y->actividades!!}</td>--}}
+                            <td id="resp{{ $y->id }}">
+                                @if($y->status == 1)
+                                <button type="button" class="btn btn-warning col-sm-12">En Proceso</button>
+                                    @elseif ($y->status == 2)
+                                <button type="button" class="btn btn-danger col-sm-12">Asignado</button>
+                                    @elseif ($y->status == 3)
+                                <button type="button" class="btn btn-success col-sm-12">Disponible</button>
+                                @endif
                             </td>
+                            @can('programas.edit')
+                                <td>
+                                    <a class="btn btn-warning" href="{{route('programas.edit',$y)}}">
+                                        <i class="fas fa-highlighter"></i></a>
+                                </td>
+                            @endcan
+                            @can('programas.destroy')
+                                <td>
+                                    <form action="{{route('programas.destroy',$y)}}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-danger" type="submit" onclick="return confirm('¿Desea eliminar el registro?');">
+                                            <i class="far fa-trash-alt"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            @endcan
                         </tr>
                     @endforeach
                 </tbody>

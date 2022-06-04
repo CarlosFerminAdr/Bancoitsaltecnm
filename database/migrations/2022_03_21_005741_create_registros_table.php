@@ -16,18 +16,11 @@ return new class extends Migration
         Schema::create('registros', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('alumno_id')->unique();
+            $table->unsignedBigInteger('alumno_id');
             $table->foreign('alumno_id')
                 ->references('id')
                 ->on('alumnos')
                 ->onDelete('cascade')
-                ->onUpdate('cascade');
-
-            $table->unsignedBigInteger('programa_id')->nullable();
-            $table->foreign('programa_id')
-                ->references('id')
-                ->on('programas')
-                ->onDelete('set null')
                 ->onUpdate('cascade');
 
             $table->unsignedBigInteger('proyecto_id')->nullable();
@@ -36,6 +29,17 @@ return new class extends Migration
                 ->on('proyectos')
                 ->onDelete('set null')
                 ->onUpdate('cascade');
+
+            $table->unsignedBigInteger('carrera_id');
+            $table->foreign('carrera_id')
+                ->references('id')
+                ->on('carreras')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
+            $table->text('vacante')->nullable();
+            $table->text('disponible')->nullable();
+            $table->string('status');
 
             $table->timestamps();
         });

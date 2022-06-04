@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -37,4 +38,16 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    /**
+     * Actualiza last_login al iniciar session.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \App\Models\User $user
+     */
+    public function authenticated(Request $request, $user){
+        $user-> created_at = now();
+        $user->save();
+    }
+
 }

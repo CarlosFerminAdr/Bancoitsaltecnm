@@ -4,7 +4,7 @@
 <div class="navbar">
     <ul class="navbar-nav ms-auto">
         @if (Route::has('login'))
-                <a type="button" class="btn btn-primary" href="{{ route('login') }}">{{ __('Acceso') }}</a>
+            <a type="button" class="btn btn-primary" href="/">{{ __('Acceder') }}</a>
         @endif
     </ul>
 </div>
@@ -79,7 +79,9 @@
                             </div>
                         </div>
 
-                        <div class="row mb-3">
+                        <input type="hidden" name="tipo_user" value="Empresa">
+
+                        {{--<div class="row mb-3">
                             <label for="tipo_user" class="col-md-5 col-form-label text-md-end">
                                 <strong>{{ __('Usuario:') }}</strong>
                             </label>
@@ -90,6 +92,10 @@
                                     <option value="Empresa">Empresa</option>
                                 </select>
                             </div>
+                        </div>--}}
+
+                        <div>
+                            <input type="hidden" name="status" value="0">
                         </div>
 
                         <div class="row mb-0">

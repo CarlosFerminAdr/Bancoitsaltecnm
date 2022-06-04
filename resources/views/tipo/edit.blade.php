@@ -9,7 +9,7 @@
     <form method="POST" action="{{ route('tipos.update', $tipo->id) }}" role="form" autocomplete="off" enctype="multipart/form-data">
         {{ method_field('PATCH') }}
         @csrf
-        @include('tipo.form',['modo'=>'EDITAR EL', 'modo2'=>'Editar'])
+        @include('tipo.form',['modo'=>'EDITAR UN', 'modo2'=>'Editar'])
     </form>
     <br>
 </body>

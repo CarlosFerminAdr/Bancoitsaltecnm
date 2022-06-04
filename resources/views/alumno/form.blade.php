@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col-sm-6 mb-3">
             <div class="card was-validated shadow border border-primary">
-                <div class="card-header text-left" style="background-color: DodgerBlue;">
+                <div class="card-header text-left" style="background-color: #1F5F96;">
                     <label for="apaterno">
                         <strong style="color:white">Apellido Paterno:</strong>
                     </label>
@@ -19,16 +19,18 @@
                 <div class="card-body">
                     <input type="text" class="form-control is-valid" id="apaterno" name="apaterno"
                         placeholder="escriba su primer Apellido.." value="{{isset($alumno->apaterno)?$alumno->apaterno:old('apaterno')}}" required>
-                    <div class="invalid-feedback">
-                        <strong>*El campo Apellido Paterno es obligatorio.</strong>
-                    </div>
+                    @error('apaterno')
+                        <div style="color:red;">
+                            <strong>* {{ $message }}</strong>
+                        </div>
+                    @enderror
                 </div>
             </div>
         </div>
 
         <div class="col-sm-6 mb-3">
             <div class="card was-validated shadow border border-primary">
-                <div class="card-header text-left" style="background-color: DodgerBlue;">
+                <div class="card-header text-left" style="background-color: #1F5F96;">
                     <label for="amaterno">
                         <strong style="color:white">Apellido Materno:</strong>
                     </label>
@@ -37,16 +39,18 @@
                 <div class="card-body">
                     <input type="text" class="form-control is-valid" id="amaterno" name="amaterno"
                         placeholder="escriba su segundo Apellido.." value="{{isset($alumno->amaterno)?$alumno->amaterno:old('amaterno')}}" required>
-                    <div class="invalid-feedback">
-                        <strong>*El campo Apellido Materno es obligatorio.</strong>
-                    </div>
+                    @error('amaterno')
+                        <div style="color:red;">
+                            <strong>* {{ $message }}</strong>
+                        </div>
+                    @enderror
                 </div>
             </div>
         </div>
 
         <div class="col-sm-6 mb-3">
             <div class="card was-validated shadow border border-primary">
-                <div class="card-header text-left" style="background-color: DodgerBlue;">
+                <div class="card-header text-left" style="background-color: #1F5F96;">
                     <label for="nombre">
                         <strong style="color:white">Nombre:</strong>
                     </label>
@@ -55,16 +59,18 @@
                 <div class="card-body">
                     <input type="text" class="form-control is-valid" id="nombre" name="nombre"
                         placeholder="escriba su Nombre.." value="{{isset($alumno->nombre)?$alumno->nombre:old('nombre')}}" required>
-                    <div class="invalid-feedback">
-                        <strong>*El campo Nombre es obligatorio.</strong>
-                    </div>
+                    @error('nombre')
+                        <div style="color:red;">
+                            <strong>* {{ $message }}</strong>
+                        </div>
+                    @enderror
                 </div>
             </div>
         </div>
 
         <div class="col-sm-6 mb-3">
             <div class="card was-validated shadow border border-primary">
-                <div class="card-header text-left" style="background-color: DodgerBlue;">
+                <div class="card-header text-left" style="background-color: #1F5F96;">
                     <label for="carrera_id">
                         <strong style="color:white">Carrera:</strong>
                     </label>
@@ -78,16 +84,19 @@
                                 >{{$c->nombre}}</option>
                         @endforeach
                     </select>
-                    <div class="invalid-feedback">
-                        <strong>*El campo Carrera es obligatorio.</strong>
-                    </div>
+                    @error('carrera_id')
+                        <div style="color:red;">
+                            <strong>* {{ $message }}</strong>
+                        </div>
+                    @enderror
                 </div>
             </div>
         </div>
 
+        {{--
         <div class="col-sm-4 mb-3">
             <div class="card was-validated shadow border border-primary">
-                <div class="card-header text-left" style="background-color: DodgerBlue;">
+                <div class="card-header text-left" style="background-color: #1F5F96;">
                     <label for="correo">
                         <strong style="color:white">Correo Electrónico:</strong>
                     </label>
@@ -101,29 +110,31 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>--}}
 
-        <div class="col-sm-3 mb-3">
+        <div class="col-sm-4 mb-3">
             <div class="card was-validated shadow border border-primary">
-                <div class="card-header text-left" style="background-color: DodgerBlue;">
+                <div class="card-header text-left" style="background-color: #1F5F96;">
                     <label for="telefono">
                         <strong style="color:white">Teléfono:</strong>
                     </label>
                 </div>
 
                 <div class="card-body">
-                    <input type="text" class="form-control is-valid" id="telefono" name="telefono"
+                    <input type="number" min="0" max="9999999999" class="form-control is-valid" id="telefono" name="telefono"
                         placeholder="escriba su número Telefónico.." value="{{isset($alumno->telefono)?$alumno->telefono:old('telefono')}}" required>
-                    <div class="invalid-feedback">
-                        <strong>*El campo Teléfono es obligatorio.</strong>
-                    </div>
+                    @error('telefono')
+                        <div style="color:red;">
+                            <strong>* {{ $message }}</strong>
+                        </div>
+                    @enderror
                 </div>
             </div>
         </div>
 
-        <div class="col-sm-3 mb-3">
+        <div class="col-sm-4 mb-3">
             <div class="card was-validated shadow border border-primary">
-                <div class="card-header text-left" style="background-color: DodgerBlue;">
+                <div class="card-header text-left" style="background-color: #1F5F96;">
                     <label for="ncontrol">
                         <strong style="color:white">No. Control:</strong>
                     </label>
@@ -132,36 +143,40 @@
                 <div class="card-body">
                     <input type="text" class="form-control is-valid" id="ncontrol" name="ncontrol"
                         placeholder="escriba su número de Control.." value="{{isset($alumno->ncontrol)?$alumno->ncontrol:old('ncontrol')}}" required>
-                    <div class="invalid-feedback">
-                        <strong>*El campo Número de Control es obligatorio.</strong>
-                    </div>
+                    @error('ncontrol')
+                        <div style="color:red;">
+                            <strong>* {{ $message }}</strong>
+                        </div>
+                    @enderror
                 </div>
             </div>
         </div>
 
-        <div class="col-sm-2 mb-3">
+        <div class="col-sm-4 mb-3">
             <div class="card was-validated shadow border border-primary">
-                <div class="card-header text-left" style="background-color: DodgerBlue;">
+                <div class="card-header text-left" style="background-color: #1F5F96;">
                     <label for="nip">
                         <strong style="color:white">NIP:</strong>
                     </label>
                 </div>
 
                 <div class="card-body">
-                    <input type="number" class="form-control is-valid" id="nip" name="nip"
+                    <input type="number" min="0" max="9999" class="form-control is-valid" id="nip" name="nip"
                         placeholder="escriba su NIP.." value="{{isset($alumno->nip)?$alumno->nip:old('nip')}}" required>
-                    <div class="invalid-feedback">
-                        <strong>*El campo NIP es obligatorio.</strong>
-                    </div>
+                    @error('nip')
+                        <div style="color:red;">
+                            <strong>* {{ $message }}</strong>
+                        </div>
+                    @enderror
                 </div>
             </div>
         </div>
 
-        <input type="hidden" name="user_id" value="{{auth()->user()->id}}">
     </div>
 
     <input class="btn btn-success float-right mt-2" type="submit" value="{{$modo2}}">
-
-    <a class="btn btn-dark float-end mt-2" href="{{route('alumnos.index')}}">
+    @can('alumnos.index')
+    <a class="btn float-end mt-2" style="background-color: #1F5F96; color:white" href="{{route('alumnos.index')}}">
         <i class="fas fa-reply"></i> Atras</a>
+    @endcan
 @stop

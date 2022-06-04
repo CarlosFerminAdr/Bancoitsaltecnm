@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Proyectograma extends Model
 {
-    protected $fillable = ['nombre', 'nalumnos', 'flimite', 'status', 'empresa_id'];
+    protected $fillable = ['nombre', 'nalumnos', 'flimite', 'empresa_id'];
 
     use HasFactory;
 

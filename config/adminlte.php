@@ -249,14 +249,27 @@ return [
         [
             'text' => 'Panel de Control',
             'route'  => 'home',
-            'icon' => 'fas fa-fw fa-user-shield',
+            'icon' => 'fas fa-fw fa-shield-alt',
+            'can'  => 'home'
         ],
-        //******************************************************************** */
+        //******************************************************************************************************************ADMINISTRADOR */
         ['header' => 'MODULOS'],
 
         [
+            'text'    => 'Usuarios',
+            'icon'    => 'fas fa-fw fa-user-cog',
+            'can'     => 'users.index',
+            'submenu' => [
+                [
+                    'text' => 'Lista',
+                    'url'  => 'users',
+                ],
+            ],
+        ],
+        [
             'text'    => 'Estatus',
-            'icon'    => 'fas fa-fw fa-star',
+            'icon'    => 'fas fa-fw fa-bell',
+            'can'     => 'estados.index',
             'submenu' => [
                 [
                     'text' => 'Lista',
@@ -269,22 +282,9 @@ return [
             ],
         ],
         [
-            'text'    => 'Tipos de programas',
-            'icon'    => 'fas fa-fw fa-cubes',
-            'submenu' => [
-                [
-                    'text' => 'Lista',
-                    'url'  => 'tipos',
-                ],
-                [
-                    'text' => 'Agregar',
-                    'url'  => 'tipos/create',
-                ],
-            ],
-        ],
-        [
             'text'    => 'Periodos',
             'icon'    => 'fas fa-fw fa-calendar-alt',
+            'can'     => 'periodos.index',
             'submenu' => [
                 [
                     'text' => 'Lista',
@@ -297,22 +297,9 @@ return [
             ],
         ],
         [
-            'text'    => 'Jefes de Departamento',
-            'icon'    => 'fas fa-fw fa-users',
-            'submenu' => [
-                [
-                    'text' => 'Lista',
-                    'url'  => 'jdeptos',
-                ],
-                [
-                    'text' => 'Agregar',
-                    'url'  => 'jdeptos/create',
-                ],
-            ],
-        ],
-        [
             'text'    => 'Carreras',
             'icon'    => 'fas fa-fw fa-sitemap',
+            'can'     => 'carreras.index',
             'submenu' => [
                 [
                     'text' => 'Lista',
@@ -325,12 +312,838 @@ return [
             ],
         ],
         [
-            'text'    => 'Empresas',
-            'icon'    => 'fas fa-fw fa-city',
+            'text'    => 'Tipos de programas',
+            'icon'    => 'fas fa-fw fa-cubes',
+            'can'     => 'tipos.index',
             'submenu' => [
                 [
                     'text' => 'Lista',
+                    'url'  => 'tipos',
+                ],
+                [
+                    'text' => 'Agregar',
+                    'url'  => 'tipos/create',
+                ],
+            ],
+        ],
+        [
+            'text'    => 'Jefes de Departamento',
+            'icon'    => 'fas fa-fw fa-users',
+            'can'     => 'jdeptos.index',
+            'submenu' => [
+                [
+                    'text' => 'Lista',
+                    'url'  => 'jdeptos',
+                ],
+                [
+                    'text' => 'Agregar',
+                    'url'  => 'jdeptos/create',
+                ],
+            ],
+        ],
+        [
+            'text'    => 'Alumnos',
+            'icon'    => 'fas fa-fw fa-user-graduate',
+            'can'     => 'alumnos.index',
+            'submenu' => [
+                [
+                    'text' => 'Lista',
+                    'url'  => 'alumnos',
+                ],
+                [
+                    'text' => 'Agregar',
+                    'url'  => 'alumnos/create',
+                ],
+            ],
+        ],
+        /*************************************************************************************************JEFES DE DEPARTAMENTO INGENIERIAS */
+        [
+            'text'    => 'Solicitud',
+            'icon'    => 'fas fa-fw fa-file-alt',
+            'label' => 'Nuevos',
+            'label_color' => 'primary',
+            'can'     => 'registroAcuiculturaPro.index',
+            'can'     => 'registroAcuiculturaAuto.index',
+            'can'     => 'registroQuimicaPro.index',
+            'can'     => 'registroQuimicaAuto.index',
+            'submenu' => [
+                [
+                    'text' => 'ING. ACUICULTURA',
+                    'icon'    => 'fas fa-fw fa-circle',
+                    'icon_color' => 'blue',
+                    'can'     => 'registroAcuiculturaPro.index',
+                    'can'     => 'registroAcuiculturaAuto.index',
+                    'submenu' => [
+                        [
+                            'text' => 'En Proceso',
+                            'icon'    => 'fas fa-fw fa-download',
+                            'icon_color' => 'yellow',
+                            'url'  => 'registroAcuiculturaPro',
+                            'label' => '+1',
+                            'label_color' => 'warning',
+                            'can' => 'registroAcuiculturaPro.index'
+                        ],
+                        [
+                            'text' => 'Autorizado',
+                            'icon'    => 'fas fa-fw fa-upload',
+                            'icon_color' => 'green',
+                            'url'  => 'registroAcuiculturaAuto',
+                            'label' => '+1',
+                            'label_color' => 'success',
+                            'can' => 'registroAcuiculturaAuto.index'
+                        ],
+                    ],
+                ],
+                [
+                    'text' => 'ING. QUÍMICA',
+                    'icon'    => 'fas fa-fw fa-circle',
+                    'icon_color' => 'orange',
+                    'can'     => 'registroQuimicaPro.index',
+                    'can'     => 'registroQuimicaAuto.index',
+                    'submenu' => [
+                        [
+                            'text' => 'En Proceso',
+                            'icon'    => 'fas fa-fw fa-download',
+                            'icon_color' => 'yellow',
+                            'url'  => 'registroQuimicaPro',
+                            'label' => '+1',
+                            'label_color' => 'warning',
+                            'can' => 'registroQuimicaPro.index'
+                        ],
+                        [
+                            'text' => 'Autorizado',
+                            'icon'    => 'fas fa-fw fa-upload',
+                            'icon_color' => 'green',
+                            'url'  => 'registroQuimicaAuto',
+                            'label' => '+1',
+                            'label_color' => 'success',
+                            'can' => 'registroQuimicaAuto.index'
+                        ],
+                    ],
+                ],
+            ],
+        ],
+        [
+            'text'    => 'Proyectos',
+            'icon'    => 'fas fa-fw fa-layer-group',
+            'label' => 'Nuevos',
+            'label_color' => 'primary',
+            'can' => 'acuicultura.index',
+            'can' => 'quimica.index',
+            'submenu' => [
+                [
+                    'text' => 'ING. ACUICULTURA',
+                    'icon'    => 'fas fa-fw fa-circle',
+                    'icon_color' => 'blue',
+                    'can' => 'acuicultura.index',
+                    'submenu' => [
+                        [
+                            'text' => 'En Proceso',
+                            'icon'    => 'fas fa-fw fa-download',
+                            'icon_color' => 'yellow',
+                            'url'  => 'acuicultura',
+                            'label' => '+1',
+                            'label_color' => 'warning'
+                        ],
+                        [
+                            'text' => 'Disponibles',
+                            'icon'    => 'fas fa-fw fa-upload',
+                            'icon_color' => 'green',
+                            'url'  => 'acuiculturaon',
+                            'label' => '+1',
+                            'label_color' => 'success'
+                        ],
+                        [
+                            'text' => 'Asignados',
+                            'icon'    => 'fas fa-fw fa-star',
+                            'icon_color' => 'red',
+                            'url'  => 'acuiculturaoff',
+                            'label' => '+1',
+                            'label_color' => 'danger'
+                        ],
+                    ],
+                ],
+                [
+                    'text' => 'ING. QUÍMICA',
+                    'icon'    => 'fas fa-fw fa-circle',
+                    'icon_color' => 'orange',
+                    'can' => 'quimica.index',
+                    'submenu' => [
+                        [
+                            'text' => 'En Proceso',
+                            'icon'    => 'fas fa-fw fa-download',
+                            'icon_color' => 'yellow',
+                            'url'  => 'quimica',
+                            'label' => '+1',
+                            'label_color' => 'warning'
+                        ],
+                        [
+                            'text' => 'Disponibles',
+                            'icon'    => 'fas fa-fw fa-upload',
+                            'icon_color' => 'green',
+                            'url'  => 'quimicaon',
+                            'label' => '+1',
+                            'label_color' => 'success'
+                        ],
+                        [
+                            'text' => 'Asignados',
+                            'icon'    => 'fas fa-fw fa-star',
+                            'icon_color' => 'red',
+                            'url'  => 'quimicaoff',
+                            'label' => '+1',
+                            'label_color' => 'danger'
+                        ],
+                    ],
+                ],
+            ],
+        ],
+        /************************************************************************************************JEFE DE DEPARTAMENTO METAL-MECANICA*/
+        [
+            'text'    => 'Solicitud',
+            'icon'    => 'fas fa-fw fa-file-alt',
+            'label' => 'Nuevos',
+            'label_color' => 'primary',
+            'can'     => 'registroMecanicaPro.index',
+            'can'     => 'registroMecanicaAuto.index',
+            'submenu' => [
+                [
+                    'text' => 'ING. MECÁNICA',
+                    'icon'    => 'fas fa-fw fa-circle',
+                    'icon_color' => 'gray',
+                    'can'     => 'registroMecanicaPro.index',
+                    'can'     => 'registroMecanicaAuto.index',
+                    'submenu' => [
+                        [
+                            'text' => 'En Proceso',
+                            'icon'    => 'fas fa-fw fa-download',
+                            'icon_color' => 'yellow',
+                            'url'  => 'registroMecanicaPro',
+                            'label' => '+1',
+                            'label_color' => 'warning',
+                            'can' => 'registroMecanicaPro.index'
+                        ],
+                        [
+                            'text' => 'Autorizado',
+                            'icon'    => 'fas fa-fw fa-upload',
+                            'icon_color' => 'green',
+                            'url'  => 'registroMecanicaAuto',
+                            'label' => '+1',
+                            'label_color' => 'success',
+                            'can' => 'registroMecanicaAuto.index'
+                        ],
+                    ],
+                ],
+            ],
+        ],
+        [
+            'text'    => 'Proyectos',
+            'icon'    => 'fas fa-fw fa-layer-group',
+            'label' => 'Nuevos',
+            'label_color' => 'primary',
+            'can' => 'mecanica.index',
+            'submenu' => [
+                [
+                    'text' => 'ING. MECÁNICA',
+                    'icon'    => 'fas fa-fw fa-circle',
+                    'icon_color' => 'gray',
+                    'can' => 'mecanica.index',
+                    'submenu' => [
+                        [
+                            'text' => 'En Proceso',
+                            'icon'    => 'fas fa-fw fa-download',
+                            'icon_color' => 'yellow',
+                            'url'  => 'mecanica',
+                            'label' => '+1',
+                            'label_color' => 'warning'
+                        ],
+                        [
+                            'text' => 'Disponibles',
+                            'icon'    => 'fas fa-fw fa-upload',
+                            'icon_color' => 'green',
+                            'url'  => 'mecanicaon',
+                            'label' => '+1',
+                            'label_color' => 'success'
+                        ],
+                        [
+                            'text' => 'Asignados',
+                            'icon'    => 'fas fa-fw fa-star',
+                            'icon_color' => 'red',
+                            'url'  => 'mecanicaoff',
+                            'label' => '+1',
+                            'label_color' => 'danger'
+                        ],
+                    ],
+                ],
+            ],
+        ],
+        /*****************************************************************************************JEFE DE DEPARTAMENTO ELECTRICA-ELECTRONICA*/
+        [
+            'text'    => 'Solicitud',
+            'icon'    => 'fas fa-fw fa-file-alt',
+            'label' => 'Nuevos',
+            'label_color' => 'primary',
+            'can'     => 'registroElectronicaPro.index',
+            'can'     => 'registroElectronicaAuto.index',
+            'can'     => 'registroTicsPro.index',
+            'can'     => 'registroTicsAuto.index',
+            'submenu' => [
+                [
+                    'text' => 'ING. ELÉCTRONICA',
+                    'icon'    => 'fas fa-fw fa-circle',
+                    'icon_color' => 'teal',
+                    'can'     => 'registroElectronicaPro.index',
+                    'can'     => 'registroElectronicaAuto.index',
+                    'submenu' => [
+                        [
+                            'text' => 'En Proceso',
+                            'icon'    => 'fas fa-fw fa-download',
+                            'icon_color' => 'yellow',
+                            'url'  => 'registroElectronicaPro',
+                            'label' => '+1',
+                            'label_color' => 'warning',
+                            'can' => 'registroElectronicaPro.index'
+                        ],
+                        [
+                            'text' => 'Autorizado',
+                            'icon'    => 'fas fa-fw fa-upload',
+                            'icon_color' => 'green',
+                            'url'  => 'registroElectronicaAuto',
+                            'label' => '+1',
+                            'label_color' => 'success',
+                            'can' => 'registroElectronicaAuto.index'
+                        ],
+                    ],
+                ],
+                [
+                    'text' => 'ING. TICs',
+                    'icon'    => 'fas fa-fw fa-circle',
+                    'icon_color' => 'purple',
+                    'can'     => 'registroTicsPro.index',
+                    'can'     => 'registroTicsAuto.index',
+                    'submenu' => [
+                        [
+                            'text' => 'En Proceso',
+                            'icon'    => 'fas fa-fw fa-download',
+                            'icon_color' => 'yellow',
+                            'url'  => 'registroTicsPro',
+                            'label' => '+1',
+                            'label_color' => 'warning',
+                            'can' => 'registroTicsPro.index'
+                        ],
+                        [
+                            'text' => 'Autorizado',
+                            'icon'    => 'fas fa-fw fa-upload',
+                            'icon_color' => 'green',
+                            'url'  => 'registroTicsAuto',
+                            'label' => '+1',
+                            'label_color' => 'success',
+                            'can' => 'registroTicsAuto.index'
+                        ],
+                    ],
+                ],
+            ],
+        ],
+        [
+            'text'    => 'Proyectos',
+            'icon'    => 'fas fa-fw fa-layer-group',
+            'label' => 'Nuevos',
+            'label_color' => 'primary',
+            'can' => 'electronica.index',
+            'can' => 'tics.index',
+            'submenu' => [
+                [
+                    'text' => 'ING. ELECTRÓNICA',
+                    'icon'    => 'fas fa-fw fa-circle',
+                    'icon_color' => 'teal',
+                    'can' => 'electronica.index',
+                    'submenu' => [
+                        [
+                            'text' => 'En Proceso',
+                            'icon'    => 'fas fa-fw fa-download',
+                            'icon_color' => 'yellow',
+                            'url'  => 'electronica',
+                            'label' => '+1',
+                            'label_color' => 'warning'
+                        ],
+                        [
+                            'text' => 'Disponibles',
+                            'icon'    => 'fas fa-fw fa-upload',
+                            'icon_color' => 'green',
+                            'url'  => 'electronicaon',
+                            'label' => '+1',
+                            'label_color' => 'success'
+                        ],
+                        [
+                            'text' => 'Asignados',
+                            'icon'    => 'fas fa-fw fa-star',
+                            'icon_color' => 'red',
+                            'url'  => 'electronicaoff',
+                            'label' => '+1',
+                            'label_color' => 'danger'
+                        ],
+                    ],
+                ],
+                [
+                    'text' => 'ING. TICs',
+                    'icon'    => 'fas fa-fw fa-circle',
+                    'icon_color' => 'purple',
+                    'can' => 'tics.index',
+                    'submenu' => [
+                        [
+                            'text' => 'En Proceso',
+                            'icon'    => 'fas fa-fw fa-download',
+                            'icon_color' => 'yellow',
+                            'url'  => 'tics',
+                            'label' => '+1',
+                            'label_color' => 'warning'
+                        ],
+                        [
+                            'text' => 'Disponibles',
+                            'icon'    => 'fas fa-fw fa-upload',
+                            'icon_color' => 'green',
+                            'url'  => 'ticson',
+                            'label' => '+1',
+                            'label_color' => 'success'
+                        ],
+                        [
+                            'text' => 'Asignados',
+                            'icon'    => 'fas fa-fw fa-star',
+                            'icon_color' => 'red',
+                            'url'  => 'ticsoff',
+                            'label' => '+1',
+                            'label_color' => 'danger'
+                        ],
+                    ],
+                ],
+            ],
+        ],
+        /************************************************************************************************JEFE DE DEPARTAMENTO ADMINISTRACION*/
+        [
+            'text'    => 'Solicitud',
+            'icon'    => 'fas fa-fw fa-file-alt',
+            'label' => 'Nuevos',
+            'label_color' => 'primary',
+            'can'     => 'registroGestionPro.index',
+            'can'     => 'registroGestionAuto.index',
+            'submenu' => [
+                [
+                    'text' => 'ING. G. EMPRESARIAL',
+                    'icon'    => 'fas fa-fw fa-circle',
+                    'icon_color' => 'pink',
+                    'can'     => 'registroGestionPro.index',
+                    'can'     => 'registroGestionAuto.index',
+                    'submenu' => [
+                        [
+                            'text' => 'En Proceso',
+                            'icon'    => 'fas fa-fw fa-download',
+                            'icon_color' => 'yellow',
+                            'url'  => 'registroGestionPro',
+                            'label' => '+1',
+                            'label_color' => 'warning',
+                            'can' => 'registroGestionPro.index'
+                        ],
+                        [
+                            'text' => 'Autorizado',
+                            'icon'    => 'fas fa-fw fa-upload',
+                            'icon_color' => 'green',
+                            'url'  => 'registroGestionAuto',
+                            'label' => '+1',
+                            'label_color' => 'success',
+                            'can' => 'registroGestionAuto.index'
+                        ],
+                    ],
+                ],
+            ],
+        ],
+        [
+            'text'    => 'Proyectos',
+            'icon'    => 'fas fa-fw fa-layer-group',
+            'label' => 'Nuevos',
+            'label_color' => 'primary',
+            'can' => 'gestion.index',
+            'submenu' => [
+                [
+                    'text' => 'ING. G. EMPRESARIAL',
+                    'icon'    => 'fas fa-fw fa-circle',
+                    'icon_color' => 'pink',
+                    'can' => 'gestion.index',
+                    'submenu' => [
+                        [
+                            'text' => 'En Proceso',
+                            'icon'    => 'fas fa-fw fa-download',
+                            'icon_color' => 'yellow',
+                            'url'  => 'gestion',
+                            'label' => '+1',
+                            'label_color' => 'warning'
+                        ],
+                        [
+                            'text' => 'Disponibles',
+                            'icon'    => 'fas fa-fw fa-upload',
+                            'icon_color' => 'green',
+                            'url'  => 'gestionon',
+                            'label' => '+1',
+                            'label_color' => 'success'
+                        ],
+                        [
+                            'text' => 'Asignados',
+                            'icon'    => 'fas fa-fw fa-star',
+                            'icon_color' => 'red',
+                            'url'  => 'gestionoff',
+                            'label' => '+1',
+                            'label_color' => 'danger'
+                        ],
+                    ],
+                ],
+            ],
+        ],
+        /**************************************************** */
+        [
+            'text'    => 'Empresa',
+            'icon'    => 'fas fa-fw fa-city',
+            'can'     => 'empresas.index',
+            'submenu' => [
+                [
+                    'text' => 'Mis Datos',
                     'url'  => 'empresas',
+                ],
+                [
+                    'text' => 'Registro',
+                    'url'  => 'empresas/create',
+                ],
+            ],
+        ],
+        [
+            'text'    => 'Domicilio',
+            'icon'    => 'fas fa-fw fa-address-card',
+            'can'     => 'domicilios.index',
+            'submenu' => [
+                [
+                    'text' => 'Mis Datos',
+                    'url'  => 'domicilios',
+                ],
+                [
+                    'text' => 'Registro',
+                    'url'  => 'domicilios/create',
+                ],
+            ],
+        ],
+        [
+            'text'    => 'Mis Proyectos',
+            'icon'    => 'fas fa-fw fa-archive',
+            'can'     => 'proyectos.index',
+            'submenu' => [
+                [
+                    'text' => 'Todos los Proyectos',
+                    'url'  => 'proyectos',
+                ],
+                [
+                    'text' => 'Crear Nuevo',
+                    'url'  => 'proyectos/create',
+                ],
+            ],
+        ],
+        /**********************************************************************************************************************VINCULACIÍON */
+        [
+            'text'    => 'Solicitud',
+            'icon'    => 'fas fa-fw fa-file-alt',
+            'label' => 'Nuevos',
+            'label_color' => 'primary',
+            'can'     => 'solicitudAcuiculturaPro.index',
+            'can'     => 'solicitudAcuiculturaAuto.index',
+            'can'     => 'solicitudQuimicaPro.index',
+            'can'     => 'solicitudQuimicaAuto.index',
+            'can'     => 'solicitudMecanicaPro.index',
+            'can'     => 'solicitudMecanicaAuto.index',
+            'can'     => 'solicitudElectronicaPro.index',
+            'can'     => 'solicitudElectronicaAuto.index',
+            'can'     => 'solicitudTicsPro.index',
+            'can'     => 'solicitudTicsAuto.index',
+            'can'     => 'solicitudGestionPro.index',
+            'can'     => 'solicitudGestionAuto.index',
+            'submenu' => [
+                [
+                    'text' => 'ING. ACUICULTURA',
+                    'icon'    => 'fas fa-fw fa-circle',
+                    'icon_color' => 'blue',
+                    'can'     => 'solicitudAcuiculturaPro.index',
+                    'can'     => 'solicitudAcuiculturaAuto.index',
+                    'submenu' => [
+                        [
+                            'text' => 'En Proceso',
+                            'icon'    => 'fas fa-fw fa-download',
+                            'icon_color' => 'yellow',
+                            'url'  => 'solicitudAcuiculturaPro',
+                            'label' => '+1',
+                            'label_color' => 'warning',
+                            'can' => 'solicitudAcuiculturaPro.index'
+                        ],
+                        [
+                            'text' => 'Autorizado',
+                            'icon'    => 'fas fa-fw fa-upload',
+                            'icon_color' => 'green',
+                            'url'  => 'solicitudAcuiculturaAuto',
+                            'label' => '+1',
+                            'label_color' => 'success',
+                            'can' => 'solicitudAcuiculturaAuto.index'
+                        ],
+                    ],
+                ],
+                [
+                    'text' => 'ING. QUÍMICA',
+                    'icon'    => 'fas fa-fw fa-circle',
+                    'icon_color' => 'orange',
+                    'can'     => 'solicitudQuimicaPro.index',
+                    'can'     => 'solicitudQuimicaAuto.index',
+                    'submenu' => [
+                        [
+                            'text' => 'En Proceso',
+                            'icon'    => 'fas fa-fw fa-download',
+                            'icon_color' => 'yellow',
+                            'url'  => 'solicitudQuimicaPro',
+                            'label' => '+1',
+                            'label_color' => 'warning',
+                            'can' => 'solicitudQuimicaPro.index'
+                        ],
+                        [
+                            'text' => 'Autorizado',
+                            'icon'    => 'fas fa-fw fa-upload',
+                            'icon_color' => 'green',
+                            'url'  => 'solicitudQuimicaAuto',
+                            'label' => '+1',
+                            'label_color' => 'success',
+                            'can' => 'solicitudQuimicaAuto.index'
+                        ],
+                    ],
+                ],
+                [
+                    'text' => 'ING. MECÁNICA',
+                    'icon'    => 'fas fa-fw fa-circle',
+                    'icon_color' => 'gray',
+                    'can'     => 'solicitudMecanicaPro.index',
+                    'can'     => 'solicitudMecanicaAuto.index',
+                    'submenu' => [
+                        [
+                            'text' => 'En Proceso',
+                            'icon'    => 'fas fa-fw fa-download',
+                            'icon_color' => 'yellow',
+                            'url'  => 'solicitudMecanicaPro',
+                            'label' => '+1',
+                            'label_color' => 'warning',
+                            'can' => 'solicitudMecanicaPro.index'
+                        ],
+                        [
+                            'text' => 'Autorizado',
+                            'icon'    => 'fas fa-fw fa-upload',
+                            'icon_color' => 'green',
+                            'url'  => 'solicitudMecanicaAuto',
+                            'label' => '+1',
+                            'label_color' => 'success',
+                            'can' => 'solicitudMecanicaAuto.index'
+                        ],
+                    ],
+                ],
+                [
+                    'text' => 'ING. ELÉCTRONICA',
+                    'icon'    => 'fas fa-fw fa-circle',
+                    'icon_color' => 'teal',
+                    'can'     => 'solicitudElectronicaPro.index',
+                    'can'     => 'solicitudElectronicaAuto.index',
+                    'submenu' => [
+                        [
+                            'text' => 'En Proceso',
+                            'icon'    => 'fas fa-fw fa-download',
+                            'icon_color' => 'yellow',
+                            'url'  => 'solicitudElectronicaPro',
+                            'label' => '+1',
+                            'label_color' => 'warning',
+                            'can' => 'solicitudElectronicaPro.index'
+                        ],
+                        [
+                            'text' => 'Autorizado',
+                            'icon'    => 'fas fa-fw fa-upload',
+                            'icon_color' => 'green',
+                            'url'  => 'solicitudElectronicaAuto',
+                            'label' => '+1',
+                            'label_color' => 'success',
+                            'can' => 'solicitudElectronicaAuto.index'
+                        ],
+                    ],
+                ],
+                [
+                    'text' => 'ING. TICs',
+                    'icon'    => 'fas fa-fw fa-circle',
+                    'icon_color' => 'purple',
+                    'can'     => 'solicitudTicsPro.index',
+                    'can'     => 'solicitudTicsAuto.index',
+                    'submenu' => [
+                        [
+                            'text' => 'En Proceso',
+                            'icon'    => 'fas fa-fw fa-download',
+                            'icon_color' => 'yellow',
+                            'url'  => 'solicitudTicsPro',
+                            'label' => '+1',
+                            'label_color' => 'warning',
+                            'can' => 'solicitudTicsPro.index'
+                        ],
+                        [
+                            'text' => 'Autorizado',
+                            'icon'    => 'fas fa-fw fa-upload',
+                            'icon_color' => 'green',
+                            'url'  => 'solicitudTicsAuto',
+                            'label' => '+1',
+                            'label_color' => 'success',
+                            'can' => 'solicitudTicsAuto.index'
+                        ],
+                    ],
+                ],
+                [
+                    'text' => 'ING. G. EMPRESARIAL',
+                    'icon'    => 'fas fa-fw fa-circle',
+                    'icon_color' => 'pink',
+                    'can'     => 'solicitudGestionPro.index',
+                    'can'     => 'solicitudGestionAuto.index',
+                    'submenu' => [
+                        [
+                            'text' => 'En Proceso',
+                            'icon'    => 'fas fa-fw fa-download',
+                            'icon_color' => 'yellow',
+                            'url'  => 'solicitudGestionPro',
+                            'label' => '+1',
+                            'label_color' => 'warning',
+                            'can' => 'solicitudGestionPro.index'
+                        ],
+                        [
+                            'text' => 'Autorizado',
+                            'icon'    => 'fas fa-fw fa-upload',
+                            'icon_color' => 'green',
+                            'url'  => 'solicitudGestionAuto',
+                            'label' => '+1',
+                            'label_color' => 'success',
+                            'can' => 'solicitudGestionAuto.index'
+                        ],
+                    ],
+                ],
+            ],
+        ],
+        [
+            'text'    => 'Programas',
+            'icon'    => 'fas fa-fw fa-layer-group',
+            'label' => 'Nuevos',
+            'label_color' => 'primary',
+            'can' => 'procesoPrograms.index',
+            'can' => 'disponiblePrograms.index',
+            'can' => 'asignadoPrograms.index',
+            'submenu' => [
+                [
+                    'text' => 'En Proceso',
+                    'icon'    => 'fas fa-fw fa-download',
+                    'icon_color' => 'yellow',
+                    'url'  => 'procesoPrograms',
+                    'label' => '+1',
+                    'label_color' => 'warning',
+                    'can' => 'procesoPrograms.index'
+                ],
+                [
+                    'text' => 'Disponibles',
+                    'icon'    => 'fas fa-fw fa-upload',
+                    'icon_color' => 'green',
+                    'url'  => 'disponiblePrograms',
+                    'label' => '+1',
+                    'label_color' => 'success',
+                    'can' => 'disponiblePrograms.index'
+                ],
+                [
+                    'text' => 'Asignados',
+                    'icon'    => 'fas fa-fw fa-star',
+                    'icon_color' => 'red',
+                    'url'  => 'asignadoPrograms',
+                    'label' => '+1',
+                    'label_color' => 'danger',
+                    'can' => 'asignadoPrograms.index'
+                ],
+            ],
+        ],
+        [
+            'text'    => 'Empresas',
+            'icon'    => 'fas fa-fw fa-city',
+            'can'     => 'allEmpresas.index',
+            'submenu' => [
+                [
+                    'text' => 'Listado',
+                    'url'  => 'allEmpresas',
+                ],
+                [
+                    'text' => 'Agregar',
+                    'url'  => 'allEmpresas/create',
+                ],
+            ],
+        ],
+        [
+            'text'    => 'Domicilios',
+            'icon'    => 'fas fa-fw fa-address-card',
+            'can'     => 'allDomicilios.index',
+            'submenu' => [
+                [
+                    'text' => 'Listado',
+                    'url'  => 'allDomicilios',
+                ],
+                [
+                    'text' => 'Agregar',
+                    'url'  => 'allDomicilios/create',
+                ],
+            ],
+        ],
+        [
+            'text'    => 'Mis Porgramas',
+            'icon'    => 'fas fa-fw fa-archive',
+            'can'     => 'programas.index',
+            'submenu' => [
+                [
+                    'text' => 'Todos los Programas',
+                    'url'  => 'programas',
+                ],
+                [
+                    'text' => 'Crear Nuevo',
+                    'url'  => 'programas/create',
+                ],
+            ],
+        ],
+        /*****************************************************************************************************************PERFIL DE ALUMNO */
+        [
+            'text'    => 'Perfil',
+            'icon'    => 'fas fa-fw fa-id-card-alt',
+            'can'     => 'perfil.index',
+            'submenu' => [
+                [
+                    'text' => 'Mis Datos',
+                    'url'  => 'perfil',
+                ],
+            ],
+        ],
+        /******************************************* */
+        [
+            'text'    => 'Jefes de Departamento',
+            'icon'    => 'fas fa-fw fa-users',
+            'can'     => 'admin.jdeptos',
+            'submenu' => [
+                [
+                    'text' => 'Lista',
+                    'url'  => 'admin.jdeptos',
+                ],
+                [
+                    'text' => 'Agregar',
+                    'url'  => 'jdeptos/create',
+                ],
+            ],
+        ],
+        [
+            'text'    => 'Empresas',
+            'icon'    => 'fas fa-fw fa-city',
+            'can'     => 'admin.empresas',
+            'submenu' => [
+                [
+                    'text' => 'Lista',
+                    'url'  => 'admin.empresas',
                 ],
                 [
                     'text' => 'Agregar',
@@ -338,27 +1151,15 @@ return [
                 ],
             ],
         ],
-        [
-            'text'    => 'Domicilios',
-            'icon'    => 'fas fa-fw fa-address-card',
-            'submenu' => [
-                [
-                    'text' => 'Lista',
-                    'url'  => 'domicilios',
-                ],
-                [
-                    'text' => 'Agregar',
-                    'url'  => 'domicilios/create',
-                ],
-            ],
-        ],
+
         [
             'text'    => 'Proyectos',
             'icon'    => 'fas fa-fw fa-archive',
+            'can'     => 'admin.proyectos',
             'submenu' => [
                 [
                     'text' => 'Lista',
-                    'url'  => 'proyectos',
+                    'url'  => 'admin.proyectos',
                 ],
                 [
                     'text' => 'Agregar',
@@ -369,10 +1170,11 @@ return [
         [
             'text'    => 'Porgramas',
             'icon'    => 'fas fa-fw fa-archive',
+            'can'     => 'admin.programas',
             'submenu' => [
                 [
                     'text' => 'Lista',
-                    'url'  => 'programas',
+                    'url'  => 'admin.programas',
                 ],
                 [
                     'text' => 'Agregar',
@@ -383,10 +1185,11 @@ return [
         [
             'text'    => 'Alumnos',
             'icon'    => 'fas fa-fw fa-user-graduate',
+            'can'     => 'admin.alumnos',
             'submenu' => [
                 [
                     'text' => 'Lista',
-                    'url'  => 'alumnos',
+                    'url'  => 'admin.alumnos',
                 ],
                 [
                     'text' => 'Agregar',

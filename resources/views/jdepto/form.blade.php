@@ -19,9 +19,11 @@
                 <div class="card-body">
                     <input type="text" class="form-control is-valid" id="apaterno" name="apaterno"
                         placeholder="escriba su primer Apellido.." value="{{isset($jdepto->apaterno)?$jdepto->apaterno:old('apaterno')}}" required>
-                    <div class="invalid-feedback">
-                        <strong>*El campo Apellido paterno es obligatorio.</strong>
-                    </div>
+                    @error('apaterno')
+                        <div style="color:red;">
+                            <strong>* {{ $message }}</strong>
+                        </div>
+                    @enderror
                 </div>
             </div>
         </div>
@@ -37,9 +39,11 @@
                 <div class="card-body">
                     <input type="text" class="form-control is-valid" id="amaterno" name="amaterno"
                         placeholder="escriba su segundo Apellido.." value="{{isset($jdepto->amaterno)?$jdepto->amaterno:old('amaterno')}}" required>
-                    <div class="invalid-feedback">
-                        <strong>*El campo Apellido materno es obligatorio.</strong>
-                    </div>
+                    @error('amaterno')
+                        <div style="color:red;">
+                            <strong>* {{ $message }}</strong>
+                        </div>
+                    @enderror
                 </div>
             </div>
         </div>
@@ -55,9 +59,11 @@
                 <div class="card-body">
                     <input type="text" class="form-control is-valid" id="nombre" name="nombre"
                         placeholder="escriba su Nombre.." value="{{isset($jdepto->nombre)?$jdepto->nombre:old('nombre')}}" required>
-                    <div class="invalid-feedback">
-                        <strong>*El campo Nombre es obligatorio.</strong>
-                    </div>
+                    @error('nombre')
+                        <div style="color:red;">
+                            <strong>* {{ $message }}</strong>
+                        </div>
+                    @enderror
                 </div>
             </div>
         </div>
@@ -73,19 +79,24 @@
                 <div class="card-body">
                     <input type="text" class="form-control is-valid" id="departamento" name="departamento"
                         placeholder="escriba su área o Deprtamento.." value="{{isset($jdepto->departamento)?$jdepto->departamento:old('departamento')}}" required>
-                    <div class="invalid-feedback">
-                        <strong>*El campo Deparatmento es obligatorio.</strong>
-                    </div>
+                    @error('departamento')
+                        <div style="color:red;">
+                            <strong>* {{ $message }}</strong>
+                        </div>
+                    @enderror
                 </div>
             </div>
         </div>
 
-        <input type="hidden" name="user_id" value="{{auth()->user()->id}}">
-
     </div>
 
     <input class="btn btn-success float-right mt-2" type="submit" value="{{$modo2}}">
-
+    @can('jdeptos.index')
     <a class="btn float-end mt-2" style="background-color: #1F5F96; color:white" href="{{route('jdeptos.index')}}">
         <i class="fas fa-reply"></i> Atras</a>
+    @endcan
+    @can('admin.jdeptos')
+    <a class="btn float-end mt-2" style="background-color: #1F5F96; color:white" href="{{route('admin.jdeptos')}}">
+        <i class="fas fa-reply"></i> Atras</a>
+    @endcan
 @stop

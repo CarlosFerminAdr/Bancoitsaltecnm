@@ -3,7 +3,7 @@
 @section('title', 'Proyecto')
 
 @section('content_header')
-    <h1>EDITAR PROYECTO</h1>
+    <h1>PROYECTO EN PROCESO</h1>
 @stop
 
 @section('content')

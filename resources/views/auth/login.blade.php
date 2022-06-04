@@ -2,10 +2,15 @@
 
 @section('content')
 <div class="navbar">
-    <ul class="navbar-nav ms-auto">
+    <ul class="navbar-nav ">
         @if (Route::has('register'))
                 <a type="button" class="btn" href="{{ route('register') }}" style="color:white">{{ __('Registro') }}</a>
         @endif
+    </ul>
+    <ul class="navbar-nav ms-auto">
+
+            <a type="button" class="btn btn-primary" href="/student">{{ __('Soy Alumno') }}</a>
+
     </ul>
 </div>
 
@@ -23,7 +28,7 @@
 
                         <div class="container">
                             <div class="row justify-content-center">
-                                <a href="#">
+                                <a href="/">
                                     <img src="vendor/img/itsal.png" alt="Logo" width="100" height="100" class="center">
                                 </a>
                             </div>

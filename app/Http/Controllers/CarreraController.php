@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CarreraRequest;
 use App\Models\Jdepto;
 use App\Models\Carrera;
 use App\Http\Requests\StoreCarreraRequest;
@@ -9,11 +10,13 @@ use App\Http\Requests\UpdateCarreraRequest;
 
 class CarreraController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct(){
+        $this->middleware('can:carreras.index')->only('index');
+        $this->middleware('can:carreras.create')->only('create', 'store');
+        $this->middleware('can:carreras.edit')->only('edit', 'update');
+        $this->middleware('can:carreras.destroy')->only('destroy');
+    }
+
     public function index()
     {
         $carreras = Carrera::paginate();
@@ -21,63 +24,33 @@ class CarreraController extends Controller
             ->with('i', (request()->input('page', 1) - 1) * $carreras->perPage());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $jdeptos = Jdepto::all();
         return view('carrera.create',compact('jdeptos'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreCarreraRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreCarreraRequest $request)
+    public function store(CarreraRequest $request)
     {
-        $carrera = new Carrera();
-        $carrera->nombre = $request->nombre;
-        $carrera->jdepto_id = $request->jdepto_id;
-        $carrera->save();
+        $carrera = Carrera::create([
+            'nombre' => strtoupper($request->nombre),
+            'jdepto_id' => $request->jdepto_id
+        ]);
         return redirect('carreras')->with('mensaje','Carrera agregado corectamente!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Carrera  $carrera
-     * @return \Illuminate\Http\Response
-     */
     public function show(Carrera $carrera)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Carrera  $carrera
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Carrera $carrera)
     {
         $jdeptos = Jdepto::all();
         return view('carrera.edit',compact('carrera','jdeptos'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateCarreraRequest  $request
-     * @param  \App\Models\Carrera  $carrera
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateCarreraRequest $request, Carrera $carrera)
+    public function update(CarreraRequest $request, Carrera $carrera)
     {
         $carrera->nombre = $request->nombre;
         $carrera->jdepto_id = $request->jdepto_id;
@@ -85,12 +58,6 @@ class CarreraController extends Controller
         return redirect('carreras')->with('mensaje','Carrera actualizado corectamente!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Carrera  $carrera
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Carrera $carrera)
     {
         $carrera->delete();

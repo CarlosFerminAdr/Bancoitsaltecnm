@@ -13,7 +13,7 @@ class StoreRegistroRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,16 @@ class StoreRegistroRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'alumno_id' => ['unique:registros'],
+            'alumno_id' => ['unique:solicitas']
+        ];
+    }
+
+    public function messages(){
+        $user = auth()->user()->name;
+        return [
+            'alumno_id.unique' => 'Usted ya tiene una solicitud de Proyecto Registrado con el Usuario: '.$user,
+            'alumno_id.unique' => 'Usted ya tiene una solicitud de Programa Registrado con el Usuario: '.$user
         ];
     }
 }

@@ -19,18 +19,11 @@ return new class extends Migration
             $table->integer('nalumnos');
             $table->string('flimite');
 
-            //$table->unsignedBigInteger('estado_id')->nullable();
-            $table->enum('status',[1, 2, 3])->default(1);
+            //$table->enum('status',[1, 2, 3])->default(1);
             $table->unsignedBigInteger('empresa_id')->nullable();
 
             $table->unsignedBigInteger('proyectograable_id');//proyectogramaable_id
             $table->string('proyectograable_type');//proyectogramaable_type
-
-            /*$table->foreign('estado_id')
-                ->references('id')
-                ->on('estados')
-                ->onDelete('set null')
-                ->onUpdate('cascade');*/
 
             $table->foreign('empresa_id')
                 ->references('id')

@@ -20,9 +20,11 @@
                 <div class="card-body">
                     <input type="text" class="form-control is-valid" id="nombre" name="nombre"
                         placeholder="escriba el nombre del Periodo.." value="{{isset($periodo->nombre)?$periodo->nombre:old('nombre')}}" required>
-                    <div class="invalid-feedback">
-                        <strong>*El campo Periodo es obligatorio.</strong>
-                    </div>
+                    @error('nombre')
+                        <div style="color:red;">
+                            <strong>* {{ $message }}</strong>
+                        </div>
+                    @enderror
                 </div>
             </div>
         </div>
