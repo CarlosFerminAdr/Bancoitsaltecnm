@@ -45,18 +45,6 @@ class Proyecto extends Model
         return $this->belongsTo('App\Models\Empresa');
     }
 
-    //RELACION MUCHOS A MUCHOS
-    /*public function periodos(){
-        return $this->belongsToMany('App\Models\Periodo');
-    }*/
-
-    /*
-    // RELACION UNO A UNO POLIMORFICA
-    public function convocatoria(){
-        return $this->MorphOne('App\Models\Convocatoria', 'convocatoriaable');
-    }
-    */
-
     //RELACION UNO A UNO
     public function registro(){
         return $this->hasOne('App\Models\Registro');

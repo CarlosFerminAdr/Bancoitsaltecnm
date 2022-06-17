@@ -12,7 +12,7 @@
         <nav class="row">
             <div class="text-center text-white">
                 <p>© Copyright 2022 ITSAL - Todos los Derechos Reservados.</p>
-                <p class="h6">Ultima actualizacion: <a>01/06/2022.</a></p>
+                <p class="h6">Ultima actualizacion: <a>09/06/2022.</a></p>
             </div>
         </nav>
     </div>

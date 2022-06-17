@@ -24,17 +24,6 @@
                         <div class="invalid-feedback">
                             <strong>*El campo Empresa es obligatorio.</strong>
                         </div>
-                        {{--<select class="custom-select" name="empresa_id" id="empresa_id" required>
-                            <option value="">-Seleccionar-</option>
-                                @foreach ( $empresas as $e )
-                                <option value="{{$e->id}}"
-                                    {{(isset($tic->proyectograma->empresa_id) && $tic->proyectograma->empresa_id == $e->id)?'selected':''}}
-                                    >{{$e->nombre}}</option>
-                            @endforeach
-                        </select>
-                        <div class="invalid-feedback">
-                            <strong>*El campo Empresa es obligatorio.</strong>
-                        </div>--}}
                     </div>
                     <div class="col-md-2"><br>
                         <label for="proyecto" class="form-label" style="color:#1F5F96"><strong>No. Alumnos:</strong></label>

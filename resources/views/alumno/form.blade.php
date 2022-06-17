@@ -93,25 +93,6 @@
             </div>
         </div>
 
-        {{--
-        <div class="col-sm-4 mb-3">
-            <div class="card was-validated shadow border border-primary">
-                <div class="card-header text-left" style="background-color: #1F5F96;">
-                    <label for="correo">
-                        <strong style="color:white">Correo Electrónico:</strong>
-                    </label>
-                </div>
-
-                <div class="card-body">
-                    <input type="text" class="form-control is-valid" id="correo" name="correo"
-                        placeholder="escriba su Correo Electronico.." value="{{isset($alumno->correo)?$alumno->correo:old('correo')}}" required>
-                    <div class="invalid-feedback">
-                        <strong>*El campo Correo Electrónico es obligatorio.</strong>
-                    </div>
-                </div>
-            </div>
-        </div>--}}
-
         <div class="col-sm-4 mb-3">
             <div class="card was-validated shadow border border-primary">
                 <div class="card-header text-left" style="background-color: #1F5F96;">
@@ -122,7 +103,7 @@
 
                 <div class="card-body">
                     <input type="number" min="0" max="9999999999" class="form-control is-valid" id="telefono" name="telefono"
-                        placeholder="escriba su número Telefónico.." value="{{isset($alumno->telefono)?$alumno->telefono:old('telefono')}}" required>
+                        placeholder="escriba su número Telefónico.." value="{{isset($alumno->telefono)?$alumno->telefono:old('telefono')}}">
                     @error('telefono')
                         <div style="color:red;">
                             <strong>* {{ $message }}</strong>

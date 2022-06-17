@@ -38,12 +38,12 @@
                 <thead class="thead" style="background-color: #1F5F96;">
                     <tr style='color:white; text-align:center'>
                         <th scope="col">#</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Correo</th>
-                        <th scope="col">Usuario</th>
-                        <th scope="col">Activo</th>
-                        <th scope="col">Acceso</th>
-                        <th scope="col">Rol</th>
+                        <th scope="col">NOMBRE</th>
+                        <th scope="col">CORREO ELECTRÓNICO</th>
+                        <th scope="col">USUARIO</th>
+                        <th scope="col">ACTIVO</th>
+                        <th scope="col">ACCESO</th>
+                        <th scope="col">ROL</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -61,13 +61,6 @@
                                   <button type="button" class="btn btn-danger col-sm-6">NO</button>
                                   @endif
                             </td>
-                            {{--<td>
-                                <br>
-                                <label class="form-check form-switch">
-                                    <input data-id="{{ $u->id }}" class="form-check-input" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="InActive" {{ $u->status ? 'checked' : '' }}>
-                                    <span class="slider round"></span>
-                                </label>
-                            </td>--}}
                             <td>
                                 <a class="btn" style="background-color: #1F5F96; color:white" href="{{route('users.edit',$u)}}">
                                     <i class="far fa-star"></i></a>

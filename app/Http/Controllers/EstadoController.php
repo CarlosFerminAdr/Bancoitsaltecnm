@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StatusOnRequest;
 use App\Models\Estado;
-use Illuminate\Http\Request;
 
 /**
  * Class EstadoController

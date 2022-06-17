@@ -44,10 +44,9 @@
                 <thead class="thead" style="background-color: #1F5F96;">
                     <tr style='color:white; text-align:center'>
                         <th scope="col">#</th>
-                        <th scope="col">Tipo de Programa</th>
-                        {{--<th scope="col">Ver</th>--}}
-                        <th scope="col">Editar</th>
-                        <th scope="col">Eliminar</th>
+                        <th scope="col">TIPO DE PROGRAMA</th>
+                        <th scope="col">EDITAR</th>
+                        <th scope="col">ELIMINAR</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -55,10 +54,6 @@
                         <tr style='color:black; text-align:center'>
                             <th scope="row">{{ ++$i }}</th>
                             <td>{{ $t->tipo_programa }}</td>
-                            {{--<td>
-                                <a class="btn btn-sm btn-primary " href="{{ route('tipos.show',$t) }}">
-                                    <i class="fa fa-fw fa-eye"></i></a>
-                            </td>--}}
                             <td>
                                 <a class="btn btn-warning" href="{{route('tipos.edit',$t)}}">
                                     <i class="fas fa-highlighter"></i></a>

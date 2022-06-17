@@ -16,10 +16,10 @@ return new class extends Migration
         Schema::create('periodables', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('periodable_id');//periodable_id
-            $table->string('periodable_type');//periodable_type
+            $table->unsignedBigInteger('periodable_id');
+            $table->string('periodable_type');
 
-            $table->unsignedBigInteger('periodo_id');//periodo_id
+            $table->unsignedBigInteger('periodo_id');
 
             $table->foreign('periodo_id')
                 ->references('id')

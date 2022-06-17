@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\TipoProgramaRequest;
 use App\Models\Tipo;
-use Illuminate\Http\Request;
 
 /**
  * Class TipoController

@@ -19,7 +19,7 @@ class AlumnoRequest extends FormRequest
             'nombre' => 'required|min:3|max:30',
             'ncontrol' => 'required|min:9|max:10|unique:alumnos',
             'nip' => 'required|min:4|max:4|unique:alumnos',
-            'telefono' => 'required|min:10|max:10|unique:alumnos',
+            'telefono' => 'nullable|min:10|max:10|unique:alumnos',
             'carrera_id' => 'required'
         ];
     }

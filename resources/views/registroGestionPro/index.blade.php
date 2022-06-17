@@ -39,15 +39,13 @@
     <div class="card table-responsive">
         <div class="card-body">
             <table id="proyectos" class="table table-hover table-bordered dt-responsive nowrap" style="background-color: white;">
-                <thead class="thead" style="background-color: #1F5F96;">{{--DodgerBlue;--}}
+                <thead class="thead" style="background-color: #1F5F96;">
                     <tr style='color:white; text-align:center'>
                         <th scope="col">#</th>
                         <th scope="col">No. Control</th>
                         <th scope="col">Alumno</th>
                         <th scope="col">Proyecto</th>
-                        {{--@can('registroSolicitud.edit')--}}
-                            <th colspan="2">Opciones</th>
-                        {{--@endcan--}}
+                        <th colspan="2">Opciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -57,31 +55,29 @@
                             <td>{{ $r->alumno->ncontrol }}</td>
                             <td>{{ $r->alumno->nombre }} {{ $r->alumno->apaterno }} {{ $r->alumno->amaterno }}</td>
                             <td>{{ $r->Proyecto->proyectograma->nombre }}</td>
-                            {{--}@can('registroSolicitud.edit')--}}
-                                <td>
-                                    <form action="{{route('registroGestionAuto.destroy',$r)}}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <input type="hidden" name="alumno_id" value="{{ $r->alumno->id }}">
-                                        <input type="hidden" name="proyecto_id" value="{{ $r->Proyecto->id }}">
-                                        <button class="btn btn-success" type="submit" onclick="return confirm('¿Autorizar Solicitud?');">
-                                            Autorizar <i class="fas fa-thumbs-up"></i>
-                                        </button>
-                                    </form>
-                                </td>
-                                <td>
-                                    <form action="{{route('registroGestionPro.destroy',$r)}}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <input type="hidden" name="alumno_id" value="{{ $r->alumno->id }}">
-                                        <input type="hidden" name="proyecto_id" value="{{ $r->Proyecto->id }}">
-                                        <input type="hidden" name="registro_id" value="{{ $r->id }}">
-                                        <button class="btn btn-danger" type="submit" onclick="return confirm('¿Rechazar Solicitud?');">
-                                            Rechazar <i class="fas fa-thumbs-down"></i>
-                                        </button>
-                                    </form>
-                                </td>
-                            {{--@endcan--}}
+                            <td>
+                                <form action="{{route('registroGestionAuto.destroy',$r)}}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input type="hidden" name="alumno_id" value="{{ $r->alumno->id }}">
+                                    <input type="hidden" name="proyecto_id" value="{{ $r->Proyecto->id }}">
+                                    <button class="btn btn-success" type="submit" onclick="return confirm('¿Autorizar Solicitud?');">
+                                        Autorizar <i class="fas fa-thumbs-up"></i>
+                                    </button>
+                                </form>
+                            </td>
+                            <td>
+                                <form action="{{route('registroGestionPro.destroy',$r)}}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input type="hidden" name="alumno_id" value="{{ $r->alumno->id }}">
+                                    <input type="hidden" name="proyecto_id" value="{{ $r->Proyecto->id }}">
+                                    <input type="hidden" name="registro_id" value="{{ $r->id }}">
+                                    <button class="btn btn-danger" type="submit" onclick="return confirm('¿Rechazar Solicitud?');">
+                                        Rechazar <i class="fas fa-thumbs-down"></i>
+                                    </button>
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

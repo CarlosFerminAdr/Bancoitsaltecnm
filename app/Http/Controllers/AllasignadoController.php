@@ -9,6 +9,7 @@ use App\Models\Carrera;
 use App\Models\Programa;
 use Illuminate\Http\Request;
 use App\Http\Requests\UpdateProgramaRequest;
+use PDF;
 
 class AllasignadoController extends Controller
 {
@@ -19,6 +20,15 @@ class AllasignadoController extends Controller
         $programas = Programa::where('status', '2')->paginate();
         return view('asignadoPrograms/index',compact('programas', 'empresa', 'periodo'))
             ->with('i', (request()->input('page', 1) - 1) * $programas->perPage());
+    }
+
+    public function pdf()
+    {
+        $programas = Programa::where('status', '2')->paginate();
+        view('asignadoPrograms.pdf' ,compact('programas'))->with('i', (request()->input('page', 1) - 1) * $programas->perPage());
+
+        $pdf = PDF::loadView('asignadoPrograms.pdf',compact('programas'));
+        return $pdf->setPaper('a4','landscape')->stream();
     }
 
     public function create()

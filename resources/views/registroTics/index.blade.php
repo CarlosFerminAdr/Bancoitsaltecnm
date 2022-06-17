@@ -30,19 +30,14 @@
     <div class="card table-responsive">
         <div class="card-body">
             <table id="proyectos" class="table table-hover table-bordered dt-responsive nowrap" style="background-color: white;">
-                <thead class="thead" style="background-color: #1F5F96;">{{--DodgerBlue;--}}
+                <thead class="thead" style="background-color: #1F5F96;">
                     <tr style='color:white; text-align:center'>
                         <th scope="col">#</th>
                         <th scope="col">No. Control</th>
                         <th scope="col">Alumno</th>
                         <th scope="col">Proyecto</th>
                         <th scope="col">Asignado</th>
-                        {{--@can('registroSolicitud.edit')--}}
-                            <th scope="col">Autorizar</th>
-                        {{--@endcan--}}
-                        {{--@can('tics.destroy')
-                            <th scope="col">Eliminar</th>
-                        @endcan--}}
+                        <th scope="col">Autorizar</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -59,37 +54,15 @@
                                     <button type="button" class="btn btn-danger col-sm-12">NO</button>
                                 @endif
                             </td>
-                            {{--}@can('registroSolicitud.edit')--}}
-                                <td>
-                                    <form action="{{route('solicitudProyecto.destroy',$r)}}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="btn btn-danger" type="submit" onclick="return confirm('¿Desea Autorizar el registro?');">
-                                            Autorizar <i class="fas fa-thumbs-up"></i>
-                                        </button>
-                                    </form>
-                                    {{--<a class="btn" style="background-color: #1F5F96; color:white" href="{{route('registroSolicitud.edit',$r)}}">
-                                        <i class="fas fa-share"></i></a>--}}
-                                    {{--<label>
-                                        <input data-id="{{ $r->id }}" class="toggle-class" type="checkbox"
-                                        data-onstyle="success"
-                                        data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="InActive"
-                                        {{ $r->status ? 'checked' : '' }}>
-                                        <span class="slider round"></span>
-                                    </label>--}}
-                                </td>
-                            {{--@endcan--}}
-                            {{--@can('tics.destroy')
-                                <td>
-                                    <form action="{{route('proyectos.destroy',$x)}}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="btn btn-danger" type="submit" onclick="return confirm('¿Desea eliminar el registro?');">
-                                            <i class="far fa-trash-alt"></i>
-                                        </button>
-                                    </form>
-                                </td>
-                            @endcan--}}
+                            <td>
+                                <form action="{{route('solicitudProyecto.destroy',$r)}}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger" type="submit" onclick="return confirm('¿Desea Autorizar el registro?');">
+                                        Autorizar <i class="fas fa-thumbs-up"></i>
+                                    </button>
+                                </form>
+                            </td>
 
                         </tr>
                     @endforeach
@@ -135,47 +108,4 @@
         });
     </script>
 
-    <script>
-        /*$(function(){
-            $('.toggle-class').change(function(){
-                var status = $(this).prop('checked') = true ? 1 : 0;
-                alert(status);
-                var id = $(this).data('id');
-                alert(id);
-                console.log(status);
-            });
-            $.ajax({
-                type: "GET",
-                dataType: "json",
-                url: '/registroSolicitud',
-                data: {'status': status, 'id': id},
-                success: function(data){
-                    $('#resp' + id).html(data.var);
-                    console.log(data.var)
-
-                }
-            });
-        });*/
-    </script>
-
-    <script>
-        /*$('.toggle-class').on('change', function(){
-            var status = $(this).prop('checked') == true ? 1 : 0;
-            alert(status);
-            var id = $(this).data('id');
-            alert(id);
-            $.ajax({
-                type: 'GET',
-                dataType: 'JSON',
-                url: '{{ route('changeStatus') }}',
-                data: {
-                    'status': status,
-                    'id', id
-                },
-                success: function(data){
-
-                }
-            });
-        });*/
-    </script>
 @stop

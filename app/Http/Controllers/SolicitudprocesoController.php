@@ -11,7 +11,6 @@ class SolicitudprocesoController extends Controller
     public function index()
     {
         $solicitid = Solicita::where(['carrera_id' => 1, 'status' => 0])->paginate();
-        //$solicitid = Solicita::paginate();
         return view('solicitudProcesoAcui/index',compact('solicitid'))
             ->with('i', (request()->input('page', 1) - 1) * $solicitid->perPage());
     }
@@ -43,8 +42,6 @@ class SolicitudprocesoController extends Controller
 
     public function destroy(Request $request, $id)
     {
-        //return $request;
-
         $alumno_id = $request->alumno_id;
         Alumno::where('id', $alumno_id)->update([
             'programa_id' => null

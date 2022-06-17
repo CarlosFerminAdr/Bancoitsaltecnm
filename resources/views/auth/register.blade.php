@@ -81,19 +81,6 @@
 
                         <input type="hidden" name="tipo_user" value="Empresa">
 
-                        {{--<div class="row mb-3">
-                            <label for="tipo_user" class="col-md-5 col-form-label text-md-end">
-                                <strong>{{ __('Usuario:') }}</strong>
-                            </label>
-                            <div class="col-md-5">
-                                <select name="tipo_user" id="tipo_user" class="form-control">
-                                    <option selected disabled>-Seleccionar-</option>
-                                    <option value="Alumno">Alumno</option>
-                                    <option value="Empresa">Empresa</option>
-                                </select>
-                            </div>
-                        </div>--}}
-
                         <div>
                             <input type="hidden" name="status" value="0">
                         </div>

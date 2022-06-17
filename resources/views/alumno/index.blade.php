@@ -45,17 +45,15 @@
                 <thead class="thead" style="background-color: #1F5F96;">
                     <tr style='color:white; text-align:center'>
                         <th scope="col">#</th>
-                        <th scope="col">Nombre</th>
-                        {{--<th scope="col">No. Control</th>
-                        <th scope="col">NIP</th>--}}
-                        <th scope="col">Correo</th>
-                        {{--<th scope="col">Telefono</th>--}}
-                        <th scope="col">Carrera</th>
+                        <th scope="col">No. CONTROL</th>
+                        <th scope="col">NOMBRE</th>
+                        <th scope="col">CORREO ELECTRÓNICO</th>
+                        <th scope="col">CARRERA</th>
                         @can('alumnos.edit')
-                            <th scope="col">Editar</th>
+                            <th scope="col">EDITAR</th>
                         @endcan
                         @can('alumnos.destroy')
-                            <th scope="col">Eliminar</th>
+                            <th scope="col">ELIMINAR</th>
                         @endcan
                     </tr>
                 </thead>
@@ -63,11 +61,9 @@
                     @foreach ( $alumnos as $a )
                         <tr style='color:black; text-align:center'>
                             <th scope="row">{{ ++$i }}</th>
+                            <td>{{$a->ncontrol}}</td>
                             <td>{{$a->nombre}} {{$a->apaterno}} {{$a->amaterno}}</td>
-                            {{--<th>{{$a->ncontrol}}</th>
-                            <th>{{$a->nip}}</th>--}}
                             <td>{{$a->correo}}</td>
-                            {{--<td>{{$a->telefono}}</td>--}}
                             <td>{{$a->carrera->nombre}}</td>
                             @can('alumnos.edit')
                                 <td>

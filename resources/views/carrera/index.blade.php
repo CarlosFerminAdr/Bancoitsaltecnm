@@ -44,10 +44,10 @@
                 <thead class="thead" style="background-color: #1F5F96;">
                     <tr style='color:white; text-align:center'>
                         <th scope="col">#</th>
-                        <th scope="col">Carrera</th>
-                        <th scope="col">Jefe de Departamento</th>
-                        <th scope="col">Editar</th>
-                        <th scope="col">Eliminar</th>
+                        <th scope="col">CARRERA</th>
+                        <th scope="col">JEFE DE DEPARTAMENTO</th>
+                        <th scope="col">EDITAR</th>
+                        <th scope="col">ELIMINAR</th>
                     </tr>
                 </thead>
                 <tbody>

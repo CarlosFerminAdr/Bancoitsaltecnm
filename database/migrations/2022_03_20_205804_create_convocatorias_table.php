@@ -15,17 +15,6 @@ return new class extends Migration
     {
         Schema::create('convocatorias', function (Blueprint $table) {
             $table->unsignedBigInteger('proyectograma_id')->unique();
-
-            /*
-            $table->unsignedBigInteger('convocatoriaable_id');
-            $table->string('convocatoriaable_type');
-
-            $table->foreign('proyectograma_id')
-                ->references('id')->on('proyectogramas')
-                ->onDelete('cascade')->onUpdate('cascade');
-
-            $table->primary(['convocatoriaable_id','convocatoriaable_type']);
-            */
             $table->timestamps();
         });
     }

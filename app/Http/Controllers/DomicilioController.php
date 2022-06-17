@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\DomicilioRequest;
 use App\Models\Domicilio;
-use App\Http\Requests\StoreDomicilioRequest;
-use App\Http\Requests\UpdateDomicilioRequest;
 
 class DomicilioController extends Controller
 {

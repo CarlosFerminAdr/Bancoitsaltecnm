@@ -41,7 +41,7 @@ class UserSeeder extends Seeder
 
         User::create([
             'name' => 'Anita del Carmen',
-            'email' => 'electrica–electronica@salinacruz.tecnm.mx',
+            'email' => 'electrica-electronica@salinacruz.tecnm.mx',
             'password' => bcrypt('1234'),
             'tipo_user' => 'Jefe Depto',
             'status' => '1'
@@ -49,19 +49,11 @@ class UserSeeder extends Seeder
 
         User::create([
             'name' => 'Dolores',
-            'email' => 'economico-administrativas@salinacruz.tecnm.mx',
+            'email' => 'economico-administrativa@salinacruz.tecnm.mx',
             'password' => bcrypt('1234'),
             'tipo_user' => 'Jefe Depto',
             'status' => '1'
         ])->assignRole('Jefe-Económico-Administrativas');
-
-        /*User::create([
-            'name' => 'Empresa1',
-            'email' => 'empresa1@gmail.com',
-            'password' => bcrypt('1234'),
-            'tipo_user' => 'Empresa',
-            'status' => '1'
-        ])->assignRole('Empresa');*/
 
         User::create([
             'name' => 'Cayetano',
@@ -70,5 +62,14 @@ class UserSeeder extends Seeder
             'tipo_user' => 'Jefe Depto',
             'status' => '1'
         ])->assignRole('Vinculación');
+
+        /*User::create([
+            'name' => 'Empresa1',
+            'email' => 'empresa1@gmail.com',
+            'password' => bcrypt('1234'),
+            'tipo_user' => 'Empresa',
+            'status' => '1'
+        ])->assignRole('Empresa');
+        */
     }
 }

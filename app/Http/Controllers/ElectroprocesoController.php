@@ -9,6 +9,7 @@ use App\Models\Carrera;
 use App\Models\Proyecto;
 use Illuminate\Http\Request;
 use App\Http\Requests\UpdateProyectoRequest;
+use PDF;
 
 class ElectroprocesoController extends Controller
 {
@@ -19,6 +20,15 @@ class ElectroprocesoController extends Controller
         $proyectos = Proyecto::where(['carrera_id' => 4, 'status' => 1])->paginate();
         return view('electronica/index',compact('proyectos', 'empresa', 'periodo'))
             ->with('i', (request()->input('page', 1) - 1) * $proyectos->perPage());
+    }
+
+    public function pdf()
+    {
+        $proyectos = Proyecto::where(['carrera_id' => 4, 'status' => 1])->paginate();
+        view('electronica.pdf' ,compact('proyectos'))->with('i', (request()->input('page', 1) - 1) * $proyectos->perPage());
+
+        $pdf = PDF::loadView('electronica.pdf',compact('proyectos'));
+        return $pdf->setPaper('a4','landscape')->stream();
     }
 
     public function create()

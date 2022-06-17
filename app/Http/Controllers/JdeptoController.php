@@ -69,7 +69,6 @@ class JdeptoController extends Controller
         $jdepto->amaterno = $request->amaterno;
         $jdepto->nombre = $request->nombre;
         $jdepto->departamento = $request->departamento;
-        //$jdepto->user_id = $request->user_id;
         $jdepto->save();
         return redirect('jdeptos')->with('mensaje','Jefe de Departamento actualizado corectamente!');
     }

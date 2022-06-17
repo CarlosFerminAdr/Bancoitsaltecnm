@@ -3,7 +3,7 @@
 @section('title', 'Panel Control')
 
 @section('content_header')
-    <strong><h1>SISTEMA DE GESTIÓN DE BANCO DE PROYECTOS</h1></strong>
+    <strong><h1>SISTEMA DE GESTIÓN DE BANCO DE PROYECTOS (RESIDENCIA PROFESIONAL)</h1></strong>
 @stop
 
 @section('content')
@@ -80,7 +80,7 @@
                                 </div>
                             @endcan
                             <div class="card-footer text-muted">
-                                <strong>Fecha Limite: {{ $p->proyectograma->flimite }}</strong>
+                                <strong>Fecha Limite: {{ utf8_encode(strftime("%d %B %Y", strtotime($p->proyectograma->flimite))) }}</strong>
                             </div>
                         </div>
                         <br>

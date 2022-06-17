@@ -19,18 +19,6 @@ class Carrera extends Model
     public function programas(){
         return $this->hasMany('App\Models\Programa');
     }
-    /*
-    //RELACION MUCHOS A MUCHOS INVERSA POLIMORFICA
-    public function proyectos(){
-        return $this->morphedByMany('App\Models\Proyecto', 'carreraable');
-    }
-
-
-    //RELACION MUCHOS A MUCHOS INVERSA POLIMORFICA
-    public function programas(){
-        return $this->morphedByMany('App\Models\Programa', 'carreraable');
-    }
-    */
 
     //RELACION UNO A MUCHOS INVERSA
     public function jdepto(){

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Domicilio;
 use App\Http\Requests\AllDomiciliosRequest;
+use PDF;
 
 class AlldomiciliosController extends Controller
 {
@@ -12,6 +13,15 @@ class AlldomiciliosController extends Controller
         $domicilios = Domicilio::paginate();
         return view('allDomicilios/index',compact('domicilios'))
             ->with('i', (request()->input('page', 1) - 1) * $domicilios->perPage());
+    }
+
+    public function pdf()
+    {
+        $domicilios = Domicilio::paginate();
+        view('allDomicilios.pdf' ,compact('domicilios'))->with('i', (request()->input('page', 1) - 1) * $domicilios->perPage());
+
+        $pdf = PDF::loadView('allDomicilios.pdf',compact('domicilios'));
+        return $pdf->setPaper('a4','landscape')->stream();
     }
 
     public function create()
@@ -52,7 +62,6 @@ class AlldomiciliosController extends Controller
         $allDomicilio->cp = $request->cp;
         $allDomicilio->municipio = $request->municipio;
         $allDomicilio->estado = $request->estado;
-        //$allDomicilio->user_id = $request->user_id;
         $allDomicilio->save();
         return redirect('allDomicilios')->with('mensaje','Domicilio actualizado corectamente!');
     }

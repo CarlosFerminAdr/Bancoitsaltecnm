@@ -93,16 +93,6 @@
                                 <strong>* {{ $message }}</strong>
                             </div>
                         @enderror
-                        {{--<select name="roles" class="form-control">
-                            <option selected disabled>-Seleccionar-</option>
-                            @foreach ($roles as $r)
-                                @if ($r->name == str_replace(array('["', '"]'), '', $user->tieneRol()))
-                                    <option value="{{$r->id}}" selected>{{$r->name}}</option>
-                                @else
-                                    <option value="{{$r->id}}">{{$r->name}}</option>
-                                @endif
-                            @endforeach
-                        </select>--}}
                     </div>
                 </div>
             </div>

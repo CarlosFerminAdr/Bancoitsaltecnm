@@ -39,6 +39,10 @@
     @endif
     <br>
     <div class="card table-responsive">
+        <div class="card-header">
+            <strong>GENERAR PDF:</strong>
+            <a class="btn btn-danger float-right" href="{{route('allEmpresas.pdf')}}"><i class="fas fa-file-pdf"></i>{{ __(' Imprimir') }}</a>
+        </div>
         <div class="card-body">
             <table id="proyectos" class="table table-hover table-bordered dt-responsive nowrap table-primary" style="background-color: white;">
                 <thead class="thead" style="background-color: #1F5F96;">

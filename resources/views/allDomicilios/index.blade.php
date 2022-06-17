@@ -39,12 +39,16 @@
     @endif
     <br>
     <div class="card table-responsive">
+        <div class="card-header">
+            <strong>GENERAR PDF:</strong>
+            <a class="btn btn-danger float-right" href="{{route('allDomicilios.pdf')}}"><i class="fas fa-file-pdf"></i>{{ __(' Imprimir') }}</a>
+        </div>
         <div class="card-body">
             <table id="proyectos" class="table table-hover table-bordered dt-responsive nowrap table-primary" style="background-color: white;">
                 <thead class="thead" style="background-color: #1F5F96;">
                     <tr style='color:white; text-align:center'>
                         <th scope="col">#</th>
-                        <th scope="col">Empresa</th>
+                        <th scope="col">EMPRESA</th>
                         <th scope="col">DIRECCIÓN</th>
                         <th scope="col">C. P.</th>
                         <th scope="col">MUNICIPIO</th>

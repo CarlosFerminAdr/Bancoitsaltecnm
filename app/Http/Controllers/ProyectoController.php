@@ -8,10 +8,6 @@ use App\Models\Empresa;
 use App\Models\Periodo;
 use App\Models\Carrera;
 use App\Models\Proyecto;
-use App\Models\Proyectograma;
-use App\Http\Requests\StoreProyectoRequest;
-use App\Http\Requests\UpdateProyectoRequest;
-
 
 class ProyectoController extends Controller
 {

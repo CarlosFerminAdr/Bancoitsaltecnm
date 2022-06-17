@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Alumno;
 use App\Models\Solicita;
 use Illuminate\Http\Request;
+use PDF;
 
 class SolicitudautorizadoController extends Controller
 {
@@ -13,6 +14,15 @@ class SolicitudautorizadoController extends Controller
         $solicitid = Solicita::where(['carrera_id' => 1, 'status' => 1])->paginate();
         return view('solicitudAutorizaAcui/index',compact('solicitid'))
             ->with('i', (request()->input('page', 1) - 1) * $solicitid->perPage());
+    }
+
+    public function pdf()
+    {
+        $solicitid = Solicita::where(['carrera_id' => 1, 'status' => 1])->paginate();
+        view('solicitudAutorizaAcui.pdf' ,compact('solicitid'))->with('i', (request()->input('page', 1) - 1) * $solicitid->perPage());
+
+        $pdf = PDF::loadView('solicitudAutorizaAcui.pdf',compact('solicitid'));
+        return $pdf->setPaper('a4','landscape')->stream();
     }
 
     public function create()
@@ -42,8 +52,6 @@ class SolicitudautorizadoController extends Controller
 
     public function destroy(Request $request, $id)
     {
-        //return $request;
-
         $status = '1';
         Solicita::where('id', $id)->update([
             'status'=> $status

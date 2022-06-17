@@ -20,11 +20,9 @@ use App\Http\Controllers\ProgramaController;
 use App\Http\Controllers\AlumnoController;
 use App\Http\Controllers\SolicitudProyectoController;
 use App\Http\Controllers\SolicitudProgramaController;
-use App\Http\Controllers\AluLoginController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
-use App\Http\Controllers\AdminJdeptoController;
 use App\Http\Controllers\AllasignadoController;
 use App\Http\Controllers\AlldisponibleController;
 use App\Http\Controllers\AlldomiciliosController;
@@ -77,14 +75,44 @@ Route::get('/student', function () {
     return view('login/alu');
 });
 
-//Route::post('/', 'App\Http\Controllers\AluLoginController@login')->name('alu.login');
-//Route::post('/', 'App\Http\Controllers\AluLoginController@username')->name('alu.login');
-/*
-Route::post('/programa', 'App\Http\Controllers\AluLoginController@programa')->name('prog');
-Route::post('/proyecto', 'App\Http\Controllers\AluLoginController@proyecto')->name('proy');
-*/
-//Route::get('StatusNoticia', 'RegistroController@UpdateStatusNoti')->name('UpdateStatusNoti'); 77+++++++++++no+++++
-Route::get('/changeStatus',[RegistroController::class,'changeStatus'])->name('changeStatus');
+Route::get('/solicitudAcuiculturaAuto/pdf', [App\Http\Controllers\SolicitudautorizadoController::class, 'pdf'])->name('solicitudAcuiculturaAuto.pdf')->middleware('auth');
+Route::get('/solicitudQuimicaAuto/pdf', [App\Http\Controllers\SolicitudAautorizadoController::class, 'pdf'])->name('solicitudQuimicaAuto.pdf')->middleware('auth');
+Route::get('/solicitudMecanicaAuto/pdf', [App\Http\Controllers\SolicitudBautorizadoController::class, 'pdf'])->name('solicitudMecanicaAuto.pdf')->middleware('auth');
+Route::get('/solicitudElectronicaAuto/pdf', [App\Http\Controllers\SolicitudCautorizadoController::class, 'pdf'])->name('solicitudElectronicaAuto.pdf')->middleware('auth');
+Route::get('/solicitudTicsAuto/pdf', [App\Http\Controllers\SolicitudEautorizadoController::class, 'pdf'])->name('solicitudTicsAuto.pdf')->middleware('auth');
+Route::get('/solicitudGestionAuto/pdf', [App\Http\Controllers\SolicitudGautorizadoController::class, 'pdf'])->name('solicitudGestionAuto.pdf')->middleware('auth');
+Route::get('/allDomicilios/pdf', [App\Http\Controllers\AlldomiciliosController::class, 'pdf'])->name('allDomicilios.pdf')->middleware('auth');
+Route::get('/allEmpresas/pdf', [App\Http\Controllers\AllempresasController::class, 'pdf'])->name('allEmpresas.pdf')->middleware('auth');
+
+Route::get('/registroAcuiculturaAuto/pdf', [App\Http\Controllers\RegistroAacuiculturaController::class, 'pdf'])->name('registroAcuiculturaAuto.pdf')->middleware('auth');
+Route::get('/registroQuimicaAuto/pdf', [App\Http\Controllers\RegistroAquimicaController::class, 'pdf'])->name('registroQuimicaAuto.pdf')->middleware('auth');
+Route::get('/registroMecanicaAuto/pdf', [App\Http\Controllers\RegistroAmecanicaController::class, 'pdf'])->name('registroMecanicaAuto.pdf')->middleware('auth');
+Route::get('/registroElectronicaAuto/pdf', [App\Http\Controllers\RegistroAelectronicaController::class, 'pdf'])->name('registroElectronicaAuto.pdf')->middleware('auth');
+Route::get('/registroTicsAuto/pdf', [App\Http\Controllers\RegistroAticsController::class, 'pdf'])->name('registroTicsAuto.pdf')->middleware('auth');
+Route::get('/registroGestionAuto/pdf', [App\Http\Controllers\RegistroAgestionController::class, 'pdf'])->name('registroGestionAuto.pdf')->middleware('auth');
+
+Route::get('/acuicultura/pdf', [App\Http\Controllers\AcuiprocesoController::class, 'pdf'])->name('acuicultura.pdf')->middleware('auth');
+Route::get('/acuiculturaon/pdf', [App\Http\Controllers\AcuidisponibleController::class, 'pdf'])->name('acuiculturaon.pdf')->middleware('auth');
+Route::get('/acuiculturaoff/pdf', [App\Http\Controllers\AcuiasignadoController::class, 'pdf'])->name('acuiculturaoff.pdf')->middleware('auth');
+Route::get('/quimica/pdf', [App\Http\Controllers\QuimiprocesoController::class, 'pdf'])->name('quimica.pdf')->middleware('auth');
+Route::get('/quimicaon/pdf', [App\Http\Controllers\QuimidisponibleController::class, 'pdf'])->name('quimicaon.pdf')->middleware('auth');
+Route::get('/quimicaoff/pdf', [App\Http\Controllers\QuimiasignadoController::class, 'pdf'])->name('quimicaoff.pdf')->middleware('auth');
+Route::get('/mecanica/pdf', [App\Http\Controllers\MecaniprocesoController::class, 'pdf'])->name('mecanica.pdf')->middleware('auth');
+Route::get('/mecanicaon/pdf', [App\Http\Controllers\MecanidisponibleController::class, 'pdf'])->name('mecanicaon.pdf')->middleware('auth');
+Route::get('/mecanicaoff/pdf', [App\Http\Controllers\MecaniasignadoController::class, 'pdf'])->name('mecanicaoff.pdf')->middleware('auth');
+Route::get('/electronica/pdf', [App\Http\Controllers\ElectroprocesoController::class, 'pdf'])->name('electronica.pdf')->middleware('auth');
+Route::get('/electronicaon/pdf', [App\Http\Controllers\ElectrodisponibleController::class, 'pdf'])->name('electronicaon.pdf')->middleware('auth');
+Route::get('/electronicaoff/pdf', [App\Http\Controllers\ElectroasignadoController::class, 'pdf'])->name('electronicaoff.pdf')->middleware('auth');
+Route::get('/tics/pdf', [App\Http\Controllers\TicsprocesoController::class, 'pdf'])->name('tics.pdf')->middleware('auth');
+Route::get('/ticson/pdf', [App\Http\Controllers\TicsdisponibleController::class, 'pdf'])->name('ticson.pdf')->middleware('auth');
+Route::get('/ticsoff/pdf', [App\Http\Controllers\TicsasignadoController::class, 'pdf'])->name('ticsoff.pdf')->middleware('auth');
+Route::get('/gestion/pdf', [App\Http\Controllers\GestionprocesoController::class, 'pdf'])->name('gestion.pdf')->middleware('auth');
+Route::get('/gestionon/pdf', [App\Http\Controllers\GestiondisponibleController::class, 'pdf'])->name('gestionon.pdf')->middleware('auth');
+Route::get('/gestionoff/pdf', [App\Http\Controllers\GestionasignadoController::class, 'pdf'])->name('gestionoff.pdf')->middleware('auth');
+
+Route::get('/procesoPrograms/pdf', [App\Http\Controllers\AllprocesoController::class, 'pdf'])->name('procesoPrograms.pdf')->middleware('auth');
+Route::get('/disponiblePrograms/pdf', [App\Http\Controllers\AlldisponibleController::class, 'pdf'])->name('disponiblePrograms.pdf')->middleware('auth');
+Route::get('/asignadoPrograms/pdf', [App\Http\Controllers\AllasignadoController::class, 'pdf'])->name('asignadoPrograms.pdf')->middleware('auth');
 
 Route::resource('users', UserController::class)->only(['index', 'edit', 'update'])->middleware('auth'); //Ruta Protegida
 Route::resource('estados', EstadoController::class)->middleware('auth'); //Ruta Protegida
@@ -156,20 +184,8 @@ Route::resource('perfil', PerfilalumnoController::class)->middleware('auth'); //
 Route::resource('registroSolicitud', RegistroController::class)->middleware('auth'); //Ruta Protegida
 /******************************************************************************************************************************* */
 
-//Route::resource('proyecto', AluLoginController::class);
-//Route::resource('admin.jdeptos', AdminJdeptoController::class);
-
 Auth::routes();
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/home2', [App\Http\Controllers\HomeController::class, 'create'])->name('home2');
-/*
-Route::get('/admin/jdeptos/create', [App\Http\Controllers\AdminJdeptoController::class, 'create'])->name('admin/jdeptos/create');
-
-Route::get('/admin.jdeptos', [App\Http\Controllers\JdeptoController::class, 'jdepto'])->name('admin.jdeptos');
-Route::get('/admin.empresas', [App\Http\Controllers\EmpresaController::class, 'empresa'])->name('admin.empresas');
-Route::get('/admin.proyectos', [App\Http\Controllers\ProyectoController::class, 'proyecto'])->name('admin.proyectos');
-Route::get('/admin.programas', [App\Http\Controllers\ProgramaController::class, 'programa'])->name('admin.programas');
-Route::get('/admin.alumnos', [App\Http\Controllers\AlumnoController::class, 'alumno'])->name('admin.alumnos');
-*/

@@ -6,8 +6,6 @@ use App\Http\Requests\EmpresaRequest;
 use App\Models\Domicilio;
 use App\Models\User;
 use App\Models\Empresa;
-use App\Http\Requests\StoreEmpresaRequest;
-use App\Http\Requests\UpdateEmpresaRequest;
 
 class EmpresaController extends Controller
 {

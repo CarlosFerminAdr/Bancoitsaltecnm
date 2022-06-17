@@ -21,7 +21,6 @@ class AlumnoController extends Controller
 
     public function index()
     {
-        //$alumnos = Alumno::where('user_id', auth()->user()->id)->paginate();
         $alumnos = Alumno::paginate();
         return view('alumno/index',compact('alumnos'))
             ->with('i', (request()->input('page', 1) - 1) * $alumnos->perPage());
@@ -72,7 +71,7 @@ class AlumnoController extends Controller
         return view('alumno.edit',compact('alumno','carreras','users'));
     }
 
-    public function update(AlumnoRequest $request, Alumno $alumno)
+    public function update(UpdateAlumnoRequest $request, Alumno $alumno)
     {
         $correo = 'L'.$request->ncontrol.'@salinacruz.tecnm.mx';
 
@@ -89,7 +88,6 @@ class AlumnoController extends Controller
         $alumno->correo = $correo;
         $alumno->telefono = $request->telefono;
         $alumno->carrera_id = $request->carrera_id;
-        //$alumno->user_id = $request->user_id;
         $alumno->save();
         return redirect('alumnos')->with('mensaje','Alumno actualizado corectamente!');
     }

@@ -44,10 +44,9 @@
                 <thead class="thead" style="background-color: #1F5F96;">
                     <tr style='color:white; text-align:center'>
                         <th scope="col">#</th>
-                        <th scope="col">Estatus</th>
-                        {{--<th scope="col">Ver</th>--}}
-                        <th scope="col">Editar</th>
-                        <th scope="col">Eliminar</th>
+                        <th scope="col">ESTATUS</th>
+                        <th scope="col">EDITAR</th>
+                        <th scope="col">ELIMINAR</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -55,10 +54,6 @@
                         <tr style='color:black; text-align:center'>
                             <th scope="row">{{ ++$i }}</th>
                             <td>{{ $e->tipo_status }}</td>
-                            {{--<td>
-                                <a class="btn btn-sm btn-primary " href="{{ route('estados.show',$e) }}">
-                                    <i class="fa fa-fw fa-eye"></i></a>
-                            </td>--}}
                             <td>
                                 <a class="btn btn-warning" href="{{route('estados.edit',$e)}}">
                                     <i class="fas fa-highlighter"></i></a>

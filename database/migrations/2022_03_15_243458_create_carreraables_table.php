@@ -16,10 +16,10 @@ return new class extends Migration
         Schema::create('carreraables', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('carreraable_id');//periodable_id
-            $table->string('carreraable_type');//periodable_type
+            $table->unsignedBigInteger('carreraable_id');
+            $table->string('carreraable_type');
 
-            $table->unsignedBigInteger('carrera_id');//periodo_id
+            $table->unsignedBigInteger('carrera_id');
 
             $table->foreign('carrera_id')
                 ->references('id')

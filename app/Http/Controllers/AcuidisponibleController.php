@@ -9,6 +9,7 @@ use App\Models\Carrera;
 use App\Models\Proyecto;
 use Illuminate\Http\Request;
 use App\Http\Requests\UpdateProyectoRequest;
+use PDF;
 
 class AcuidisponibleController extends Controller
 {
@@ -19,6 +20,15 @@ class AcuidisponibleController extends Controller
         $proyectos = Proyecto::where(['carrera_id' => 1, 'status' => 3])->paginate();
         return view('acuiculturaon/index',compact('proyectos', 'empresa', 'periodo'))
             ->with('i', (request()->input('page', 1) - 1) * $proyectos->perPage());
+    }
+
+    public function pdf()
+    {
+        $proyectos = Proyecto::where(['carrera_id' => 1, 'status' => 3])->paginate();
+        view('acuiculturaon.pdf' ,compact('proyectos'))->with('i', (request()->input('page', 1) - 1) * $proyectos->perPage());
+
+        $pdf = PDF::loadView('acuiculturaon.pdf',compact('proyectos'));
+        return $pdf->setPaper('a4','landscape')->stream();
     }
 
     public function create()

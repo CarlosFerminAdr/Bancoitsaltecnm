@@ -42,7 +42,7 @@
     <div class="card table-responsive">
         <div class="card-body">
             <table id="proyectos" class="table table-hover table-bordered dt-responsive nowrap table-primary" style="background-color: white;">
-                <thead class="thead" style="background-color: #1F5F96;">{{--DodgerBlue;--}}
+                <thead class="thead" style="background-color: #1F5F96;">
                     <tr style='color:white; text-align:center'>
                         <th scope="col">#</th>
                         <th scope="col">Empresa</th>
@@ -50,7 +50,6 @@
                         <th scope="col">No. Alumnos</th>
                         <th scope="col">Fecha</th>
                         <th scope="col">Objetivo</th>
-                        {{--<th scope="col">Problematica</th>--}}
                         <th scope="col">Estatus</th>
                         @can('proyectos.edit')
                             <th scope="col">Editar</th>
@@ -69,7 +68,6 @@
                             <td>{{ $x->proyectograma->nalumnos }}</td>
                             <td>{{ $x->proyectograma->flimite }}</td>
                             <td>{!! $x->objetivo !!}</td>
-                            {{--<td>{!! $x->problematica !!}</td>--}}
                             <td id="resp{{ $x->id }}">
                                 @if($x->status == 1)
                                 <button type="button" class="btn btn-warning col-sm-12">En Proceso</button>

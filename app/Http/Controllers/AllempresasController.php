@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Domicilio;
 use App\Models\Empresa;
 use App\Http\Requests\AllEmpresasRequest;
+use PDF;
 use App\Http\Requests\UpdateEmpresaRequest;
 
 class AllempresasController extends Controller
@@ -14,6 +15,15 @@ class AllempresasController extends Controller
         $empresas = Empresa::paginate();
         return view('allEmpresas/index',compact('empresas'))
             ->with('i', (request()->input('page', 1) - 1) * $empresas->perPage());
+    }
+
+    public function pdf()
+    {
+        $empresas = Empresa::paginate();
+        view('allEmpresas.pdf' ,compact('empresas'))->with('i', (request()->input('page', 1) - 1) * $empresas->perPage());
+
+        $pdf = PDF::loadView('allEmpresas.pdf',compact('empresas'));
+        return $pdf->setPaper('a4','landscape')->stream();
     }
 
     public function create()
@@ -57,8 +67,6 @@ class AllempresasController extends Controller
         $allEmpresa->correo = $request->correo;
         $allEmpresa->telefono = $request->telefono;
         $allEmpresa->titular = $request->titular;
-        //$allEmpresa->domicilio_id = $request->domicilio_id;
-        //$allEmpresa->user_id = $request->user_id;
         $allEmpresa->save();
         return redirect('allEmpresas')->with('mensaje','Empresa actualizado corectamente!');
     }

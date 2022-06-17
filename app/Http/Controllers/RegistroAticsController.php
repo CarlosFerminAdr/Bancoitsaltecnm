@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Alumno;
 use App\Models\Registro;
 use Illuminate\Http\Request;
+use PDF;
 
 class RegistroAticsController extends Controller
 {
@@ -13,6 +14,15 @@ class RegistroAticsController extends Controller
         $registro = Registro::where(['carrera_id' => 5, 'status' => 1])->paginate();
         return view('registroTicsAuto/index',compact('registro'))
             ->with('i', (request()->input('page', 1) - 1) * $registro->perPage());
+    }
+
+    public function pdf()
+    {
+        $registro = Registro::where(['carrera_id' => 5, 'status' => 1])->paginate();
+        view('registroTicsAuto.pdf' ,compact('registro'))->with('i', (request()->input('page', 1) - 1) * $registro->perPage());
+
+        $pdf = PDF::loadView('registroTicsAuto.pdf',compact('registro'));
+        return $pdf->setPaper('a4','landscape')->stream();
     }
 
     public function create()

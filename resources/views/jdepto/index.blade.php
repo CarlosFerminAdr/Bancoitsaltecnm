@@ -44,13 +44,13 @@
                 <thead class="thead" style="background-color: #1F5F96;">
                     <tr style='color:white; text-align:center'>
                         <th scope="col">#</th>
-                        <th scope="col">Docente</th>
-                        <th scope="col">Departamento</th>
+                        <th scope="col">DOCENTE</th>
+                        <th scope="col">DEPARTAMENTO</th>
                         @can('jdeptos.edit')
-                            <th scope="col">Editar</th>
+                            <th scope="col">EDITAR</th>
                         @endcan
                         @can('jdeptos.destroy')
-                            <th scope="col">Eliminar</th>
+                            <th scope="col">ELIMINAR</th>
                         @endcan
                     </tr>
                 </thead>

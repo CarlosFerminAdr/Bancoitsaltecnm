@@ -2,11 +2,6 @@
 
 @section('content')
 <div class="navbar">
-    {{--<ul class="navbar-nav ">
-        @if (Route::has('register'))
-                <a type="button" class="btn" href="{{ route('register') }}" style="color:white">{{ __('Registro') }}</a>
-        @endif
-    </ul>--}}
     <ul class="navbar-nav ms-auto">
         @if (Route::has('login'))
             <a type="button" class="btn btn-primary" href="/">{{ __('Acceder') }}</a>
@@ -80,6 +75,5 @@
         </div>
     </div>
 </div>
-
 
 @endsection

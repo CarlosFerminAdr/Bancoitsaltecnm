@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('estados', function (Blueprint $table) {
             $table->id();
             $table->string('tipo_status');
-            //$table->enum('estado',['Disponible','Asignado','En proceso']);
             $table->timestamps();
         });
     }

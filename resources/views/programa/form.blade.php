@@ -141,41 +141,6 @@
             </div>
         </div>
     </div>
-    {{--
-    <div class="col-sm-12 mb-3">
-        <div class="card was-validated shadow border border-primary">
-            <div class="card-header text-left" style="background-color: #1F5F96;">
-                <label for="carrera_id">
-                    <strong style="color:white">Programa enfocado a la Carrera:</strong>
-                </label>
-            </div>
-            <div class="card-body">
-                @foreach ( $carreras as $ca )
-                <label class="mr-4">
-                    <input type="checkbox" name="carreras[]" value="{{$ca->id}}">{{$ca->nombre}}
-                </label>
-                @endforeach
-            </div>
-        </div>
-    </div>
-
-    <div class="col-sm-12 mb-3">
-        <div class="card was-validated shadow border border-primary">
-            <div class="card-header text-left" style="background-color: #1F5F96;">
-                <label for="periodo_id">
-                    <strong style="color:white">Periodo del Programa:</strong>
-                </label>
-            </div>
-            <div class="card-body">
-                @foreach ( $periodos as $pe )
-                <label class="mr-4">
-                    <input type="checkbox" name="periodos[]" value="{{$pe->id}}">{{$pe->nombre}}
-                </label>
-                @endforeach
-            </div>
-        </div>
-    </div>
-    --}}
 
     {{------------------------------------SECCIÓN DEL PROGRAMA-------------------------------}}
 

@@ -45,18 +45,15 @@
                 <thead class="thead" style="background-color: #1F5F96;">
                     <tr style='color:white; text-align:center'>
                         <th scope="col">#</th>
-                        {{--<th scope="col">Empresa</th>--}}
-                        <th scope="col">Programa</th>
-                        <th scope="col">Periodo</th>
-                        {{--<th scope="col">Tipo de Programa</th>--}}
-                        <th scope="col">Fecha</th>
-                        {{--<th scope="col">Actividades</th>--}}
-                        <th scope="col">Estatus</th>
+                        <th scope="col">PROGRAMA</th>
+                        <th scope="col">PERIODO</th>
+                        <th scope="col">FECHA</th>
+                        <th scope="col">ESTATUS</th>
                         @can('programas.edit')
-                            <th scope="col">Editar</th>
+                            <th scope="col">EDITAR</th>
                         @endcan
                         @can('programas.destroy')
-                            <th scope="col">Eliminar</th>
+                            <th scope="col">ELIMINAR</th>
                         @endcan
                     </tr>
                 </thead>
@@ -64,12 +61,9 @@
                     @foreach ( $programas as $y )
                         <tr style='color:black; text-align:center'>
                             <th scope="row">{{ ++$i }}</th>
-                            {{--<td>{{$y->proyectograma->empresa->nombre}}</td>--}}
                             <td>{{ $y->proyectograma->nombre }}</td>
                             <td>{{ $y->periodo->nombre }}</td>
-                            {{--<td>{{ $y->tipo->tipo_programa }}</td>--}}
-                            <td>{{ $y->proyectograma->flimite }}</td>
-                            {{--<td>{!!$y->actividades!!}</td>--}}
+                            <td>{{ utf8_encode(strftime("%d %B %Y", strtotime($y->proyectograma->flimite))) }}</td>
                             <td id="resp{{ $y->id }}">
                                 @if($y->status == 1)
                                 <button type="button" class="btn btn-warning col-sm-12">En Proceso</button>

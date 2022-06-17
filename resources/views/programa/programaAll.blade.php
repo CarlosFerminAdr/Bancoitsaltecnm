@@ -50,7 +50,6 @@
                         <th scope="col">No. Alumnos</th>
                         <th scope="col">Fecha</th>
                         <th scope="col">Tipo de Programa</th>
-                        {{--<th scope="col">Actividades</th>--}}
                         <th scope="col">Estatus</th>
                         @can('programas.edit')
                             <th scope="col">Editar</th>
@@ -69,7 +68,6 @@
                             <td>{{$y->proyectograma->nalumnos}}</td>
                             <td>{{$y->proyectograma->flimite}}</td>
                             <td>{{$y->tipo->tipo_programa}}</td>
-                            {{--<td>{!!$y->actividades!!}</td>--}}
                             <td id="resp{{ $y->id }}">
                                 @if($y->status == 1)
                                 <button type="button" class="btn btn-warning col-sm-12">En Proceso</button>

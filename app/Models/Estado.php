@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Estado extends Model
 {
-    
+
     static $rules = [
 		'tipo_status' => 'required',
     ];
@@ -40,6 +40,5 @@ class Estado extends Model
     {
         return $this->hasMany('App\Models\Proyectograma', 'estado_id', 'id');
     }
-    
 
 }

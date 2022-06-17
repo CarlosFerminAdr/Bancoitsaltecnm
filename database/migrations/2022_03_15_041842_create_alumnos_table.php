@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer('ncontrol');
             $table->integer('nip');
             $table->string('correo');
-            $table->string('telefono');
+            $table->string('telefono')->nullable();
 
             $table->unsignedBigInteger('carrera_id')->nullable();
             $table->foreign('carrera_id')

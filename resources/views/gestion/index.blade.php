@@ -27,9 +27,13 @@
 
     <br>
     <div class="card table-responsive">
+        <div class="card-header">
+            <strong>GENERAR PDF:</strong>
+            <a class="btn btn-danger float-right" href="{{route('gestion.pdf')}}"><i class="fas fa-file-pdf"></i>{{ __(' Imprimir') }}</a>
+        </div>
         <div class="card-body">
             <table id="proyectos" class="table table-hover table-bordered dt-responsive nowrap" style="background-color: white;">
-                <thead class="thead" style="background-color: #1F5F96;">{{--DodgerBlue;--}}
+                <thead class="thead" style="background-color: #1F5F96;">
                     <tr style='color:white; text-align:center'>
                         <th scope="col">#</th>
                         <th scope="col">Empresa</th>
@@ -39,9 +43,6 @@
                         @can('gestion.edit')
                             <th scope="col">Autorizar</th>
                         @endcan
-                        {{--@can('tics.destroy')
-                            <th scope="col">Eliminar</th>
-                        @endcan--}}
                     </tr>
                 </thead>
                 <tbody>
@@ -66,18 +67,6 @@
                                         <i class="fas fa-share"></i></a>
                                 </td>
                             @endcan
-                            {{--@can('tics.destroy')
-                                <td>
-                                    <form action="{{route('proyectos.destroy',$x)}}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="btn btn-danger" type="submit" onclick="return confirm('¿Desea eliminar el registro?');">
-                                            <i class="far fa-trash-alt"></i>
-                                        </button>
-                                    </form>
-                                </td>
-                            @endcan--}}
-
                         </tr>
                     @endforeach
                 </tbody>

@@ -9,6 +9,7 @@ use App\Models\Carrera;
 use App\Models\Programa;
 use Illuminate\Http\Request;
 use App\Http\Requests\UpdateProgramaRequest;
+use PDF;
 
 class AlldisponibleController extends Controller
 {
@@ -19,6 +20,15 @@ class AlldisponibleController extends Controller
         $programas = Programa::where('status', '3')->paginate();
         return view('disponiblePrograms/index',compact('programas', 'empresa', 'periodo'))
             ->with('i', (request()->input('page', 1) - 1) * $programas->perPage());
+    }
+
+    public function pdf()
+    {
+        $programas = Programa::where('status', '3')->paginate();
+        view('disponiblePrograms.pdf' ,compact('programas'))->with('i', (request()->input('page', 1) - 1) * $programas->perPage());
+
+        $pdf = PDF::loadView('disponiblePrograms.pdf',compact('programas'));
+        return $pdf->setPaper('a4','landscape')->stream();
     }
 
     public function create()

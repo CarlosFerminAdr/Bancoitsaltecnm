@@ -45,10 +45,7 @@
                     <tr style='color:white; text-align:center'>
                         <th scope="col">#</th>
                         <th scope="col">Nombre</th>
-                        {{--<th scope="col">No. Control</th>
-                        <th scope="col">NIP</th>--}}
                         <th scope="col">Correo</th>
-                        {{--<th scope="col">Telefono</th>--}}
                         <th scope="col">Carrera</th>
                         @can('alumnos.edit')
                             <th scope="col">Editar</th>
@@ -63,10 +60,7 @@
                         <tr style='color:black; text-align:center'>
                             <th scope="row">{{ ++$i }}</td>
                             <td>{{$a->nombre}} {{$a->apaterno}} {{$a->amaterno}}</td>
-                            {{--<th>{{$a->ncontrol}}</th>
-                            <th>{{$a->nip}}</th>--}}
                             <td>{{$a->correo}}</td>
-                            {{--<td>{{$a->telefono}}</td>--}}
                             <td>{{$a->carrera->nombre}}</td>
                             @can('alumnos.edit')
                                 <td>
